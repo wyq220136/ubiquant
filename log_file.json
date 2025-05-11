@@ -1,0 +1,29 @@
+{
+    "stage": "PRE_FLOP",
+    "hand_cards": ["Ah", "As"],
+    "public_cards": [],
+    "action": "Bet",
+    "history_action": [["call", "raise", "fold"]],
+    "bet_history": [[20, 30, 50]],
+    "hand_chips": 2000
+}
+
+{
+    "stage": "FLOP",
+    "hand_cards": ["Ah", "As"],
+    "public_cards": ["5c", "7d", "Jh"],
+    "action": "Check",
+    "history_action": [["call", "raise"], ["check", "bet"]],
+    "bet_history": [[20, 30], [100, 150]],
+    "hand_chips": 1800
+}
+
+{
+    "stage": "TURN",
+    "hand_cards": ["Ah", "As"],
+    "public_cards": ["5c", "7d", "Jh", "9s"],
+    "action": "Raise",
+    "history_action": [["call", "raise"], ["check", "bet"], ["raise", "call"]],
+    "bet_history": [[20, 30], [100, 150], [200, 300]],
+    "hand_chips": 1500
+}

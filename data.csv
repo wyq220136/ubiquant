@@ -1,0 +1,217 @@
+,prompts,value
+0,"Stage: flop, Private Cards: 26, 44, Public Cards: None, Action: bet, History Actions: [fold,fold,bet], Bet History: [Round1:0,0,20], Chips: 2100",24.997409999999995
+1,"Stage: turn, Private Cards: 26, 44, Public Cards: 3c, 7h, Jc, Action: bet, History Actions: [bet | fold,fold,bet], Bet History: [Round1:0 | Round2:0,0,20], Chips: 2100",27.774899999999995
+2,"Stage: river, Private Cards: 26, 44, Public Cards: 3c, 7h, Jc, 9s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2100",30.860999999999994
+3,"Stage: preflop, Private Cards: 26, 44, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,0,0 | Round2:0], Chips: 2080",34.28999999999999
+4,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [fold,fold,bet], Bet History: [Round1:0,0,20], Chips: 2100",72.171
+5,"Stage: turn, Private Cards: None, Public Cards: 3c, 7h, Jc, Action: bet, History Actions: [bet | fold,fold,bet], Bet History: [Round1:0 | Round2:0,0,20], Chips: 2100",80.19000000000001
+6,"Stage: river, Private Cards: None, Public Cards: 3c, 7h, Jc, 9s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2100",89.10000000000001
+7,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,0,0 | Round2:0], Chips: 2080",99.0
+8,"Stage: flop, Private Cards: None, Public Cards: 7s, Js, 9h, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2080",72.171
+9,"Stage: turn, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2080",80.19000000000001
+10,"Stage: river, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, 4h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2080",89.10000000000001
+11,"Stage: preflop, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, 4h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2120",99.0
+12,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [fold,fold,bet], Bet History: [Round1:0,0,20], Chips: 2100",72.171
+13,"Stage: turn, Private Cards: None, Public Cards: 3c, 7h, Jc, Action: bet, History Actions: [bet | fold,fold,bet], Bet History: [Round1:0 | Round2:0,0,20], Chips: 2100",80.19000000000001
+14,"Stage: river, Private Cards: None, Public Cards: 3c, 7h, Jc, 9s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2100",89.10000000000001
+15,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,0,0 | Round2:0], Chips: 2080",99.0
+16,"Stage: flop, Private Cards: None, Public Cards: 7s, Js, 9h, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2080",72.171
+17,"Stage: turn, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2080",80.19000000000001
+18,"Stage: river, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, 4h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2080",89.10000000000001
+19,"Stage: preflop, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, 4h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2120",99.0
+20,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet], Bet History: [Round1:20], Chips: 2090",72.171
+21,"Stage: turn, Private Cards: None, Public Cards: Qc, Qs, 3c, Action: bet, History Actions: [bet | bet], Bet History: [Round1:10 | Round2:20], Chips: 2070",80.19000000000001
+22,"Stage: river, Private Cards: None, Public Cards: Qc, Qs, 3c, 6c, 5h, Action: bet, History Actions: [bet,bet | bet], Bet History: [Round1:20,20 | Round2:10], Chips: 2050",89.10000000000001
+23,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet | bet,bet], Bet History: [Round1:0,0 | Round2:20,20], Chips: 2100",99.0
+24,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [fold,fold,bet], Bet History: [Round1:0,0,20], Chips: 2100",72.171
+25,"Stage: turn, Private Cards: None, Public Cards: 3c, 7h, Jc, Action: bet, History Actions: [bet | fold,fold,bet], Bet History: [Round1:0 | Round2:0,0,20], Chips: 2100",80.19000000000001
+26,"Stage: river, Private Cards: None, Public Cards: 3c, 7h, Jc, 9s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2100",89.10000000000001
+27,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,0,0 | Round2:0], Chips: 2080",99.0
+28,"Stage: flop, Private Cards: None, Public Cards: 7s, Js, 9h, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2080",-0.7290000000000001
+29,"Stage: turn, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2080",-0.81
+30,"Stage: river, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, 4h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2080",-0.9
+31,"Stage: preflop, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, 4h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2120",-1.0
+32,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet], Bet History: [Round1:20], Chips: 2090",-0.7290000000000001
+33,"Stage: turn, Private Cards: None, Public Cards: Qc, Qs, 3c, Action: bet, History Actions: [bet | bet], Bet History: [Round1:10 | Round2:20], Chips: 2070",-0.81
+34,"Stage: river, Private Cards: None, Public Cards: Qc, Qs, 3c, 6c, 5h, Action: bet, History Actions: [bet,bet | bet], Bet History: [Round1:20,20 | Round2:10], Chips: 2050",-0.9
+35,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet | bet,bet], Bet History: [Round1:0,0 | Round2:20,20], Chips: 2100",-1.0
+36,"Stage: flop, Private Cards: None, Public Cards: 6s, 2h, 9h, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2100",-0.7290000000000001
+37,"Stage: turn, Private Cards: None, Public Cards: 6s, 2h, 9h, 9s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2100",-0.81
+38,"Stage: river, Private Cards: None, Public Cards: 6s, 2h, 9h, 9s, Js, Action: bet, History Actions: [bet | bet], Bet History: [Round1:20 | Round2:0], Chips: 2080",-0.9
+39,"Stage: preflop, Private Cards: None, Public Cards: 6s, 2h, 9h, 9s, Js, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2160",-1.0
+40,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [fold,fold,bet], Bet History: [Round1:0,0,20], Chips: 2100",72.171
+41,"Stage: turn, Private Cards: None, Public Cards: 3c, 7h, Jc, Action: bet, History Actions: [bet | fold,fold,bet], Bet History: [Round1:0 | Round2:0,0,20], Chips: 2100",80.19000000000001
+42,"Stage: river, Private Cards: None, Public Cards: 3c, 7h, Jc, 9s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2100",89.10000000000001
+43,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,0,0 | Round2:0], Chips: 2080",99.0
+44,"Stage: flop, Private Cards: None, Public Cards: 7s, Js, 9h, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2080",-0.7290000000000001
+45,"Stage: turn, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2080",-0.81
+46,"Stage: river, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, 4h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2080",-0.9
+47,"Stage: preflop, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, 4h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2120",-1.0
+48,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet], Bet History: [Round1:20], Chips: 2090",-0.7290000000000001
+49,"Stage: turn, Private Cards: None, Public Cards: Qc, Qs, 3c, Action: bet, History Actions: [bet | bet], Bet History: [Round1:10 | Round2:20], Chips: 2070",-0.81
+50,"Stage: river, Private Cards: None, Public Cards: Qc, Qs, 3c, 6c, 5h, Action: bet, History Actions: [bet,bet | bet], Bet History: [Round1:20,20 | Round2:10], Chips: 2050",-0.9
+51,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet | bet,bet], Bet History: [Round1:0,0 | Round2:20,20], Chips: 2100",-1.0
+52,"Stage: flop, Private Cards: None, Public Cards: 6s, 2h, 9h, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2100",-0.7290000000000001
+53,"Stage: turn, Private Cards: None, Public Cards: 6s, 2h, 9h, 9s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2100",-0.81
+54,"Stage: river, Private Cards: None, Public Cards: 6s, 2h, 9h, 9s, Js, Action: bet, History Actions: [bet | bet], Bet History: [Round1:20 | Round2:0], Chips: 2080",-0.9
+55,"Stage: preflop, Private Cards: None, Public Cards: 6s, 2h, 9h, 9s, Js, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2160",-1.0
+56,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet], Bet History: [Round1:20], Chips: 2140",72.171
+57,"Stage: turn, Private Cards: None, Public Cards: 5c, Ac, 5s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2140",80.19000000000001
+58,"Stage: river, Private Cards: None, Public Cards: 5c, Ac, 5s, 2h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2140",89.10000000000001
+59,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,0,0 | Round2:0], Chips: 2160",99.0
+60,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [fold,fold,bet], Bet History: [Round1:0,0,20], Chips: 2100",72.171
+61,"Stage: turn, Private Cards: None, Public Cards: 3c, 7h, Jc, Action: bet, History Actions: [bet | fold,fold,bet], Bet History: [Round1:0 | Round2:0,0,20], Chips: 2100",80.19000000000001
+62,"Stage: river, Private Cards: None, Public Cards: 3c, 7h, Jc, 9s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2100",89.10000000000001
+63,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,0,0 | Round2:0], Chips: 2080",99.0
+64,"Stage: flop, Private Cards: None, Public Cards: 7s, Js, 9h, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2080",-0.7290000000000001
+65,"Stage: turn, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2080",-0.81
+66,"Stage: river, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, 4h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2080",-0.9
+67,"Stage: preflop, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, 4h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2120",-1.0
+68,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet], Bet History: [Round1:20], Chips: 2090",-0.7290000000000001
+69,"Stage: turn, Private Cards: None, Public Cards: Qc, Qs, 3c, Action: bet, History Actions: [bet | bet], Bet History: [Round1:10 | Round2:20], Chips: 2070",-0.81
+70,"Stage: river, Private Cards: None, Public Cards: Qc, Qs, 3c, 6c, 5h, Action: bet, History Actions: [bet,bet | bet], Bet History: [Round1:20,20 | Round2:10], Chips: 2050",-0.9
+71,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet | bet,bet], Bet History: [Round1:0,0 | Round2:20,20], Chips: 2100",-1.0
+72,"Stage: flop, Private Cards: None, Public Cards: 6s, 2h, 9h, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2100",-0.7290000000000001
+73,"Stage: turn, Private Cards: None, Public Cards: 6s, 2h, 9h, 9s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2100",-0.81
+74,"Stage: river, Private Cards: None, Public Cards: 6s, 2h, 9h, 9s, Js, Action: bet, History Actions: [bet | bet], Bet History: [Round1:20 | Round2:0], Chips: 2080",-0.9
+75,"Stage: preflop, Private Cards: None, Public Cards: 6s, 2h, 9h, 9s, Js, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2160",-1.0
+76,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet], Bet History: [Round1:20], Chips: 2140",72.171
+77,"Stage: turn, Private Cards: None, Public Cards: 5c, Ac, 5s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2140",80.19000000000001
+78,"Stage: river, Private Cards: None, Public Cards: 5c, Ac, 5s, 2h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2140",89.10000000000001
+79,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,0,0 | Round2:0], Chips: 2160",99.0
+80,"Stage: flop, Private Cards: None, Public Cards: 2s, 3c, Td, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2160",72.171
+81,"Stage: turn, Private Cards: None, Public Cards: 2s, 3c, Td, 5s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:20 | Round2:10], Chips: 2140",80.19000000000001
+82,"Stage: river, Private Cards: None, Public Cards: 2s, 3c, Td, 5s, Ts, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2140",89.10000000000001
+83,"Stage: preflop, Private Cards: None, Public Cards: 2s, 3c, Td, 5s, Ts, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2140",99.0
+84,"Stage: turn, Private Cards: None, Public Cards: Kc, 7h, 3c, Action: bet, History Actions: [bet,bet], Bet History: [Round1:20,20], Chips: 2100",-0.81
+85,"Stage: river, Private Cards: None, Public Cards: Kc, 7h, 3c, 5s, Action: bet, History Actions: [bet | bet,bet], Bet History: [Round1:0 | Round2:20,20], Chips: 2100",-0.9
+86,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,20,20 | Round2:0], Chips: 2180",-1.0
+87,"Stage: flop, Private Cards: None, Public Cards: Ac, 2h, 2c, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2180",72.171
+88,"Stage: turn, Private Cards: None, Public Cards: Ac, 2h, 2c, 7d, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2180",80.19000000000001
+89,"Stage: river, Private Cards: None, Public Cards: Ac, 2h, 2c, 7d, 3s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2180",89.10000000000001
+90,"Stage: preflop, Private Cards: None, Public Cards: Ac, 2h, 2c, 7d, 3s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2180",99.0
+91,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [fold,fold,bet], Bet History: [Round1:0,0,20], Chips: 2100",72.171
+92,"Stage: turn, Private Cards: None, Public Cards: 3c, 7h, Jc, Action: bet, History Actions: [bet | fold,fold,bet], Bet History: [Round1:0 | Round2:0,0,20], Chips: 2100",80.19000000000001
+93,"Stage: river, Private Cards: None, Public Cards: 3c, 7h, Jc, 9s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2100",89.10000000000001
+94,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,0,0 | Round2:0], Chips: 2080",99.0
+95,"Stage: flop, Private Cards: None, Public Cards: 7s, Js, 9h, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2080",-0.7290000000000001
+96,"Stage: turn, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2080",-0.81
+97,"Stage: river, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, 4h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2080",-0.9
+98,"Stage: preflop, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, 4h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2120",-1.0
+99,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet], Bet History: [Round1:20], Chips: 2090",-0.7290000000000001
+100,"Stage: turn, Private Cards: None, Public Cards: Qc, Qs, 3c, Action: bet, History Actions: [bet | bet], Bet History: [Round1:10 | Round2:20], Chips: 2070",-0.81
+101,"Stage: river, Private Cards: None, Public Cards: Qc, Qs, 3c, 6c, 5h, Action: bet, History Actions: [bet,bet | bet], Bet History: [Round1:20,20 | Round2:10], Chips: 2050",-0.9
+102,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet | bet,bet], Bet History: [Round1:0,0 | Round2:20,20], Chips: 2100",-1.0
+103,"Stage: flop, Private Cards: None, Public Cards: 6s, 2h, 9h, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2100",-0.7290000000000001
+104,"Stage: turn, Private Cards: None, Public Cards: 6s, 2h, 9h, 9s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2100",-0.81
+105,"Stage: river, Private Cards: None, Public Cards: 6s, 2h, 9h, 9s, Js, Action: bet, History Actions: [bet | bet], Bet History: [Round1:20 | Round2:0], Chips: 2080",-0.9
+106,"Stage: preflop, Private Cards: None, Public Cards: 6s, 2h, 9h, 9s, Js, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2160",-1.0
+107,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet], Bet History: [Round1:20], Chips: 2140",72.171
+108,"Stage: turn, Private Cards: None, Public Cards: 5c, Ac, 5s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2140",80.19000000000001
+109,"Stage: river, Private Cards: None, Public Cards: 5c, Ac, 5s, 2h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2140",89.10000000000001
+110,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,0,0 | Round2:0], Chips: 2160",99.0
+111,"Stage: flop, Private Cards: None, Public Cards: 2s, 3c, Td, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2160",72.171
+112,"Stage: turn, Private Cards: None, Public Cards: 2s, 3c, Td, 5s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:20 | Round2:10], Chips: 2140",80.19000000000001
+113,"Stage: river, Private Cards: None, Public Cards: 2s, 3c, Td, 5s, Ts, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2140",89.10000000000001
+114,"Stage: preflop, Private Cards: None, Public Cards: 2s, 3c, Td, 5s, Ts, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2140",99.0
+115,"Stage: turn, Private Cards: None, Public Cards: Kc, 7h, 3c, Action: bet, History Actions: [bet,bet], Bet History: [Round1:20,20], Chips: 2100",-0.81
+116,"Stage: river, Private Cards: None, Public Cards: Kc, 7h, 3c, 5s, Action: bet, History Actions: [bet | bet,bet], Bet History: [Round1:0 | Round2:20,20], Chips: 2100",-0.9
+117,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,20,20 | Round2:0], Chips: 2180",-1.0
+118,"Stage: flop, Private Cards: None, Public Cards: Ac, 2h, 2c, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2180",72.171
+119,"Stage: turn, Private Cards: None, Public Cards: Ac, 2h, 2c, 7d, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2180",80.19000000000001
+120,"Stage: river, Private Cards: None, Public Cards: Ac, 2h, 2c, 7d, 3s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2180",89.10000000000001
+121,"Stage: preflop, Private Cards: None, Public Cards: Ac, 2h, 2c, 7d, 3s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2180",99.0
+122,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet], Bet History: [Round1:20], Chips: 2150",72.171
+123,"Stage: turn, Private Cards: None, Public Cards: As, 6s, Ac, Action: bet, History Actions: [bet | bet], Bet History: [Round1:10 | Round2:20], Chips: 2150",80.19000000000001
+124,"Stage: river, Private Cards: None, Public Cards: As, 6s, Ac, 5c, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2150",89.10000000000001
+125,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,0,0 | Round2:0], Chips: 2190",99.0
+126,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [fold,fold,bet], Bet History: [Round1:0,0,20], Chips: 2100",72.171
+127,"Stage: turn, Private Cards: None, Public Cards: 3c, 7h, Jc, Action: bet, History Actions: [bet | fold,fold,bet], Bet History: [Round1:0 | Round2:0,0,20], Chips: 2100",80.19000000000001
+128,"Stage: river, Private Cards: None, Public Cards: 3c, 7h, Jc, 9s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2100",89.10000000000001
+129,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,0,0 | Round2:0], Chips: 2080",99.0
+130,"Stage: flop, Private Cards: None, Public Cards: 7s, Js, 9h, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2080",-0.7290000000000001
+131,"Stage: turn, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2080",-0.81
+132,"Stage: river, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, 4h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2080",-0.9
+133,"Stage: preflop, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, 4h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2120",-1.0
+134,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet], Bet History: [Round1:20], Chips: 2090",-0.7290000000000001
+135,"Stage: turn, Private Cards: None, Public Cards: Qc, Qs, 3c, Action: bet, History Actions: [bet | bet], Bet History: [Round1:10 | Round2:20], Chips: 2070",-0.81
+136,"Stage: river, Private Cards: None, Public Cards: Qc, Qs, 3c, 6c, 5h, Action: bet, History Actions: [bet,bet | bet], Bet History: [Round1:20,20 | Round2:10], Chips: 2050",-0.9
+137,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet | bet,bet], Bet History: [Round1:0,0 | Round2:20,20], Chips: 2100",-1.0
+138,"Stage: flop, Private Cards: None, Public Cards: 6s, 2h, 9h, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2100",-0.7290000000000001
+139,"Stage: turn, Private Cards: None, Public Cards: 6s, 2h, 9h, 9s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2100",-0.81
+140,"Stage: river, Private Cards: None, Public Cards: 6s, 2h, 9h, 9s, Js, Action: bet, History Actions: [bet | bet], Bet History: [Round1:20 | Round2:0], Chips: 2080",-0.9
+141,"Stage: preflop, Private Cards: None, Public Cards: 6s, 2h, 9h, 9s, Js, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2160",-1.0
+142,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet], Bet History: [Round1:20], Chips: 2140",-0.7290000000000001
+143,"Stage: turn, Private Cards: None, Public Cards: 5c, Ac, 5s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2140",-0.81
+144,"Stage: river, Private Cards: None, Public Cards: 5c, Ac, 5s, 2h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2140",-0.9
+145,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,0,0 | Round2:0], Chips: 2160",-1.0
+146,"Stage: flop, Private Cards: None, Public Cards: 2s, 3c, Td, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2160",-0.7290000000000001
+147,"Stage: turn, Private Cards: None, Public Cards: 2s, 3c, Td, 5s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:20 | Round2:10], Chips: 2140",-0.81
+148,"Stage: river, Private Cards: None, Public Cards: 2s, 3c, Td, 5s, Ts, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2140",-0.9
+149,"Stage: preflop, Private Cards: None, Public Cards: 2s, 3c, Td, 5s, Ts, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2140",-1.0
+150,"Stage: turn, Private Cards: None, Public Cards: Kc, 7h, 3c, Action: bet, History Actions: [bet,bet], Bet History: [Round1:20,20], Chips: 2100",-0.81
+151,"Stage: river, Private Cards: None, Public Cards: Kc, 7h, 3c, 5s, Action: bet, History Actions: [bet | bet,bet], Bet History: [Round1:0 | Round2:20,20], Chips: 2100",-0.9
+152,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,20,20 | Round2:0], Chips: 2180",-1.0
+153,"Stage: flop, Private Cards: None, Public Cards: Ac, 2h, 2c, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2180",-0.7290000000000001
+154,"Stage: turn, Private Cards: None, Public Cards: Ac, 2h, 2c, 7d, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2180",-0.81
+155,"Stage: river, Private Cards: None, Public Cards: Ac, 2h, 2c, 7d, 3s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2180",-0.9
+156,"Stage: preflop, Private Cards: None, Public Cards: Ac, 2h, 2c, 7d, 3s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2180",-1.0
+157,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet], Bet History: [Round1:20], Chips: 2150",-0.7290000000000001
+158,"Stage: turn, Private Cards: None, Public Cards: As, 6s, Ac, Action: bet, History Actions: [bet | bet], Bet History: [Round1:10 | Round2:20], Chips: 2150",-0.81
+159,"Stage: river, Private Cards: None, Public Cards: As, 6s, Ac, 5c, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2150",-0.9
+160,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,0,0 | Round2:0], Chips: 2190",-1.0
+161,"Stage: flop, Private Cards: None, Public Cards: 4c, 7s, 9h, Action: bet, History Actions: [bet], Bet History: [Round1:20], Chips: 2180",-0.7290000000000001
+162,"Stage: turn, Private Cards: None, Public Cards: 4c, 7s, 9h, Jc, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2180",-0.81
+163,"Stage: river, Private Cards: None, Public Cards: 4c, 7s, 9h, Jc, 9c, Action: bet, History Actions: [bet | bet], Bet History: [Round1:20 | Round2:0], Chips: 2160",-0.9
+164,"Stage: preflop, Private Cards: None, Public Cards: 4c, 7s, 9h, Jc, 9c, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2260",-1.0
+165,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [fold,fold,bet], Bet History: [Round1:0,0,20], Chips: 2100",72.171
+166,"Stage: turn, Private Cards: None, Public Cards: 3c, 7h, Jc, Action: bet, History Actions: [bet | fold,fold,bet], Bet History: [Round1:0 | Round2:0,0,20], Chips: 2100",80.19000000000001
+167,"Stage: river, Private Cards: None, Public Cards: 3c, 7h, Jc, 9s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2100",89.10000000000001
+168,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,0,0 | Round2:0], Chips: 2080",99.0
+169,"Stage: flop, Private Cards: None, Public Cards: 7s, Js, 9h, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2080",-0.7290000000000001
+170,"Stage: turn, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2080",-0.81
+171,"Stage: river, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, 4h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2080",-0.9
+172,"Stage: preflop, Private Cards: None, Public Cards: 7s, Js, 9h, Ah, 4h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2120",-1.0
+173,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet], Bet History: [Round1:20], Chips: 2090",-0.7290000000000001
+174,"Stage: turn, Private Cards: None, Public Cards: Qc, Qs, 3c, Action: bet, History Actions: [bet | bet], Bet History: [Round1:10 | Round2:20], Chips: 2070",-0.81
+175,"Stage: river, Private Cards: None, Public Cards: Qc, Qs, 3c, 6c, 5h, Action: bet, History Actions: [bet,bet | bet], Bet History: [Round1:20,20 | Round2:10], Chips: 2050",-0.9
+176,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet | bet,bet], Bet History: [Round1:0,0 | Round2:20,20], Chips: 2100",-1.0
+177,"Stage: flop, Private Cards: None, Public Cards: 6s, 2h, 9h, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2100",-0.7290000000000001
+178,"Stage: turn, Private Cards: None, Public Cards: 6s, 2h, 9h, 9s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2100",-0.81
+179,"Stage: river, Private Cards: None, Public Cards: 6s, 2h, 9h, 9s, Js, Action: bet, History Actions: [bet | bet], Bet History: [Round1:20 | Round2:0], Chips: 2080",-0.9
+180,"Stage: preflop, Private Cards: None, Public Cards: 6s, 2h, 9h, 9s, Js, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2160",-1.0
+181,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet], Bet History: [Round1:20], Chips: 2140",-0.7290000000000001
+182,"Stage: turn, Private Cards: None, Public Cards: 5c, Ac, 5s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2140",-0.81
+183,"Stage: river, Private Cards: None, Public Cards: 5c, Ac, 5s, 2h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2140",-0.9
+184,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,0,0 | Round2:0], Chips: 2160",-1.0
+185,"Stage: flop, Private Cards: None, Public Cards: 2s, 3c, Td, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2160",-0.7290000000000001
+186,"Stage: turn, Private Cards: None, Public Cards: 2s, 3c, Td, 5s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:20 | Round2:10], Chips: 2140",-0.81
+187,"Stage: river, Private Cards: None, Public Cards: 2s, 3c, Td, 5s, Ts, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2140",-0.9
+188,"Stage: preflop, Private Cards: None, Public Cards: 2s, 3c, Td, 5s, Ts, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2140",-1.0
+189,"Stage: turn, Private Cards: None, Public Cards: Kc, 7h, 3c, Action: bet, History Actions: [bet,bet], Bet History: [Round1:20,20], Chips: 2100",-0.81
+190,"Stage: river, Private Cards: None, Public Cards: Kc, 7h, 3c, 5s, Action: bet, History Actions: [bet | bet,bet], Bet History: [Round1:0 | Round2:20,20], Chips: 2100",-0.9
+191,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,20,20 | Round2:0], Chips: 2180",-1.0
+192,"Stage: flop, Private Cards: None, Public Cards: Ac, 2h, 2c, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2180",-0.7290000000000001
+193,"Stage: turn, Private Cards: None, Public Cards: Ac, 2h, 2c, 7d, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2180",-0.81
+194,"Stage: river, Private Cards: None, Public Cards: Ac, 2h, 2c, 7d, 3s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2180",-0.9
+195,"Stage: preflop, Private Cards: None, Public Cards: Ac, 2h, 2c, 7d, 3s, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2180",-1.0
+196,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet], Bet History: [Round1:20], Chips: 2150",-0.7290000000000001
+197,"Stage: turn, Private Cards: None, Public Cards: As, 6s, Ac, Action: bet, History Actions: [bet | bet], Bet History: [Round1:10 | Round2:20], Chips: 2150",-0.81
+198,"Stage: river, Private Cards: None, Public Cards: As, 6s, Ac, 5c, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2150",-0.9
+199,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,0,0 | Round2:0], Chips: 2190",-1.0
+200,"Stage: flop, Private Cards: None, Public Cards: 4c, 7s, 9h, Action: bet, History Actions: [bet], Bet History: [Round1:20], Chips: 2180",-0.7290000000000001
+201,"Stage: turn, Private Cards: None, Public Cards: 4c, 7s, 9h, Jc, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2180",-0.81
+202,"Stage: river, Private Cards: None, Public Cards: 4c, 7s, 9h, Jc, 9c, Action: bet, History Actions: [bet | bet], Bet History: [Round1:20 | Round2:0], Chips: 2160",-0.9
+203,"Stage: preflop, Private Cards: None, Public Cards: 4c, 7s, 9h, Jc, 9c, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2260",-1.0
+204,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet], Bet History: [Round1:20], Chips: 2240",72.171
+205,"Stage: turn, Private Cards: None, Public Cards: Kd, 6c, Ts, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2240",80.19000000000001
+206,"Stage: river, Private Cards: None, Public Cards: Kd, 6c, Ts, 7h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2240",89.10000000000001
+207,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet | bet], Bet History: [Round1:0,20 | Round2:0], Chips: 2200",99.0
+208,"Stage: flop, Private Cards: None, Public Cards: As, Jh, 6c, Action: bet, History Actions: [bet], Bet History: [Round1:10], Chips: 2200",-0.7290000000000001
+209,"Stage: turn, Private Cards: None, Public Cards: As, Jh, 6c, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:10], Chips: 2180",-0.81
+210,"Stage: river, Private Cards: None, Public Cards: As, Jh, 6c, Ah, 5s, Action: bet, History Actions: [bet,bet | bet], Bet History: [Round1:20,0 | Round2:0], Chips: 2180",-0.9
+211,"Stage: preflop, Private Cards: None, Public Cards: As, Jh, 6c, Ah, 5s, Action: bet, History Actions: [bet,bet,bet | bet,bet], Bet History: [Round1:0,20,20 | Round2:20,0], Chips: 2160",-1.0
+212,"Stage: flop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet], Bet History: [Round1:20], Chips: 2260",-0.7290000000000001
+213,"Stage: turn, Private Cards: None, Public Cards: 6s, Td, Jc, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:20], Chips: 2260",-0.81
+214,"Stage: river, Private Cards: None, Public Cards: 6s, Td, Jc, 6h, Action: bet, History Actions: [bet | bet], Bet History: [Round1:0 | Round2:0], Chips: 2260",-0.9
+215,"Stage: preflop, Private Cards: None, Public Cards: None, Action: bet, History Actions: [bet,bet,bet | bet], Bet History: [Round1:0,0,0 | Round2:0], Chips: 2260",-1.0
