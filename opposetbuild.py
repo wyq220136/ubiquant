@@ -7,59 +7,148 @@ from collections import defaultdict
 
 action_config = ["giveup", "allin", "check", "callbet", "raisebet"]
 
-class MCCFR_PokerPlayer:
-    def __init__(self, action_space):
-        self.action_space = action_space
-        self.regret = defaultdict(lambda: np.zeros(len(action_space)))
-        self.strategy = defaultdict(lambda: np.ones(len(action_space))/len(action_space))
-        self.cumulative_strategy = defaultdict(lambda: np.zeros(len(action_space)))
-
-    def update_strategy(self, infoset):
-        regret_pos = np.maximum(self.regret[infoset], 0)
-        sum_regret = np.sum(regret_pos)
-        self.strategy[infoset] = regret_pos / sum_regret if sum_regret > 0 else np.ones_like(regret_pos)/len(regret_pos)
-
-    def train(self, env, sac_agent, iterations=1000):
-        for _ in range(iterations):
-            self._cfr(env, sac_agent, env.reset(), 1.0, 1.0)
-
-    def _cfr(self, env, sac_agent, state, reach_prob, opp_reach_prob):
-        if env.is_terminal(state):
-            # 获取u(h)
-            return env.get_utility(state)
-
-
-        infoset = self._get_infoset(state)
-        self.update_strategy(infoset)
-        current_player = state['current_player']
-
-        if current_player != 0:  # SAC玩家的回合
-            action_probs = sac_agent.get_policy(state)  # 需要SAC提供策略接口
-            action_idx = np.random.choice(len(self.action_space), p=action_probs)
-            next_state = env.step(state, self.action_space[action_idx])
-            return self._cfr(env, sac_agent, next_state, reach_prob, opp_reach_prob * action_probs[action_idx])
-
-        # CFR玩家的回合
-        node_util = 0
-        action_utils = np.zeros(len(self.action_space))
-        for a in range(len(self.action_space)):
-            action_prob = self.strategy[infoset][a]
-            new_reach = reach_prob * action_prob
-            next_state = env.step(state, self.action_space[a])
-            action_utils[a] = -self._cfr(env, sac_agent, next_state, new_reach, opp_reach_prob)
-            node_util += action_prob * action_utils[a]
-
-        for a in range(len(self.action_space)):
-            regret = action_utils[a] - node_util
-            self.regret[infoset][a] += opp_reach_prob * regret
-            self.cumulative_strategy[infoset][a] += reach_prob * self.strategy[infoset][a]
+class OpponentAnalysis:
+    def __init__(self, oppo_id, filter_window=10, gamma=0.3):
+        self.id = oppo_id
+        self.action_history = [0]*filter_window
+        self.agression = 1
+        self.idx = 0
+        self.gamma = gamma
+        self.window_size = filter_window
         
-        return node_util
+    # 对手这一轮动作录入，0-过牌或弃牌，1-跟注，2-加注
+    def calculate_new_agression(self, oppo_action):
+        self.action_history[self.idx] = oppo_action
+        # td更新
+        self.agression = self.agression + self.gamma*(sum(self.action_history)/self.window_size - self.agression)
+        
 
-    def _get_infoset(self, state):
-        return f"{state['public_cards']}_{'_'.join(state['action_history'])}"
+class PokerStateEncoder:
+    def __init__(self, identify, player_seat_id=3):
+        self.player_seat_id = player_seat_id
+        self.max_chips = 2000  # 归一化参考值
+        self.max_public_cards = 5  # 最多5张公共牌
+        
+        # 玩家身份，庄家0，小盲1，大盲2，其他玩家3
+        self.identify = identify
+        
+        # 映射表初始化
+        self.rank_map = {'2':0, '3':1, '4':2, '5':3, '6':4,
+                        '7':5, '8':6, '9':7, 'T':8, 'J':9,
+                        'Q':10, 'K':11, 'A':12}
+        self.suit_map = {'c':0, 'd':1, 'h':2, 's':3}
+        self.stage_map = {
+            "PREFLOP": 0,
+            "FLOP": 1,
+            "TURN": 2,
+            "RIVER": 3,
+            "SHOWDOWN": 4
+        }
+
+    def _parse_card(self, card):
+        if isinstance(card, int):  # 处理数值型表示
+            rank = card % 13
+            suit = card // 13
+            return [rank, suit]
+        elif isinstance(card, str):
+            return [self.rank_map[card[0]], self.suit_map[card[1]]]
+        return [0, 0]
     
+    def update_identify(self, identify):
+        self.identify = identify
     
+    # 用于公共牌组和私人手牌编码
+    def encode_cards(self, cards:list)->list:
+        cards_modified = []
+        # 只有手牌才能出现空列表情况
+        if cards == []:
+            return [[0, 0]]*2
+        for card in cards:
+            if card != -1:
+                card_tmp = self._parse_card(card)
+                cards_modified.append(card_tmp)
+            else:
+                cards_modified.append([0, 0])
+        return cards_modified
+            
+
+    # data从round_info的report函数中获取
+    def encode(self, data):
+        features = []
+
+        # 手牌特征
+        player_hand = data["hand_cards"]
+        hand_feature = self.encode_cards(player_hand)
+        features.extend(hand_feature)
+
+        # 公共牌特征
+        table_cards = data["table_cards"]
+        public_feature = self.encode_cards(table_cards)
+        features.extend(public_feature)
+
+        # 改到这里，2025.5.12 下午3点
+        
+        
+        
+        
+        # 筹码特征
+        player_chips = next((s["hand_chips"] for s in data["basic_info"]["seat_info"] 
+                          if s["seatid"] == self.player_seat_id), 0)
+        # opponent_seat = 4 if self.player_seat_id == 3 else 3
+        opponent_chips = next((s["hand_chips"] for s in data["basic_info"]["seat_info"] 
+                             if s["seatid"] != self.player_seat_id), 0)
+        
+        # 计算底池
+        pot = sum([r.get("bet",0) for r in data["dynamic_info"]["round_history"]])
+        
+        # 归一化处理
+        chip_features = [
+            player_chips / self.max_chips,
+            opponent_chips / self.max_chips,
+            pot / self.max_chips
+        ]
+        features.extend(chip_features)
+
+        # 4. 位置特征 -------------------------------------------------
+        position = [0, 0, 0]  # [庄家, 小盲, 大盲]
+        dealer_id = data["basic_info"]["dealer_info"]["seatid"]
+        if self.player_seat_id == dealer_id:
+            position[0] = 1
+        if self.player_seat_id == data["basic_info"]["blind"]["small_blind"]["seatid"]:
+            position[1] = 1
+        if self.player_seat_id == data["basic_info"]["blind"]["big_blind"]["seatid"]:
+            position[2] = 1
+        features.extend(position)
+
+        # 5. 阶段特征 -------------------------------------------------
+        stage_onehot = [0]*5
+        stage_onehot[self.stage_map[current_stage]] = 1
+        features.extend(stage_onehot)
+
+        # 6. 对手行为特征 ---------------------------------------------
+        opponent_actions = []
+        for r in data["dynamic_info"]["round_history"]:
+            if r["player"] != self.player_seat_id:
+                opponent_actions.append(r.get("type", 0))
+        
+        # 统计动作类型：0-弃牌，1-跟注，2-加注
+        action_counts = [0, 0, 0]
+        for a in opponent_actions[-10:]:  # 只看最近10个动作
+            if 0 <= a <= 2:
+                action_counts[a] += 1
+        total = len(opponent_actions) or 1
+        aggression = action_counts[2] / total  # 加注频率
+        features.append(aggression)
+
+        # 转换为numpy数组并确保维度
+        state_vector = np.array(features, dtype=np.float32)
+        
+        # 最终维度验证
+        expected_dim = 2*2 + 5*2 + 3 + 3 + 5 + 1
+        assert len(state_vector) == expected_dim, \
+            f"维度错误: 预期{expected_dim}, 实际{len(state_vector)}"
+        
+        return state_vector
     
     
 
@@ -142,7 +231,7 @@ class ReplayMemory:
 
 
 class PokerSACAgent:
-    def __init__(self, state_dim, memo_capacity, alpha, beta, gamma, tau, batch_size, device='cuda'):
+    def __init__(self, memo_capacity, alpha, beta, gamma, tau, batch_size, device='cuda', state_dim=26):
         self.action_dim = 5
         self.memory = ReplayMemory(memo_capacity, state_dim, self.action_dim)
         self.actor = ActorNetwork(state_dim, self.action_dim).to(device)

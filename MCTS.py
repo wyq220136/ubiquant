@@ -78,7 +78,7 @@ class node_list:
         self.node_now.add_child(node)
         self.node_now = node
         self.node_counter += 1
-        print(f"Node number is {self.node_counter}")
+        # print(f"Node number is {self.node_counter}")
     
     def backbone(self, c_puct:float):
         # 从叶节点开始计算
@@ -175,10 +175,10 @@ class LabelScorer:
         df = pd.DataFrame({"prompts":prompts, "value":self.value_list})
         if os.path.exists(self.path):
             df1 = pd.read_csv(self.path)
-            df0 = pd.concat([df1, df])
-            df0.to_csv("data.csv")
+            df0 = pd.concat([df1, df], ignore_index=True)
+            df0.to_csv("data.csv", index=False)
         else:
-            df.to_csv("data.csv")
+            df.to_csv("data.csv", index=False)
  
 
 # 判断是否是顺子
@@ -272,29 +272,31 @@ def compare_hands(type1, value1, type2, value2):
     
 
 def transfer_cards(table_cards):
-        cards = []
-        for i in table_cards:
-            inner_sequennce = i % 13
-            if i//13 == 0:
-                card_str = card_sequence[inner_sequennce] + "s"
-                cards.append(card_str)
-            elif i//13 == 1:
-                card_str = card_sequence[inner_sequennce] + "d"
-                cards.append(card_str)
-            elif i//13 == 2:
-                card_str = card_sequence[inner_sequennce] + "h"
-                cards.append(card_str)
-            elif i//13 == 3:
-                card_str = card_sequence[inner_sequennce] + "c"
-                cards.append(card_str)            
-        return cards
+    if table_cards == None:
+        return []
+    cards = []
+    for i in table_cards:
+        inner_sequennce = i % 13
+        if i//13 == 0:
+            card_str = card_sequence[inner_sequennce] + "s"
+            cards.append(card_str)
+        elif i//13 == 1:
+            card_str = card_sequence[inner_sequennce] + "d"
+            cards.append(card_str)
+        elif i//13 == 2:
+            card_str = card_sequence[inner_sequennce] + "h"
+            cards.append(card_str)
+        elif i//13 == 3:
+            card_str = card_sequence[inner_sequennce] + "c"
+            cards.append(card_str)            
+    return cards
    
 # 计算手牌和公共牌的最大匹配，折算惩罚率
 def calculate_max_match(hand_cards_raw:list, public_cards_raw:list)->float:
     hand_cards = transfer_cards(hand_cards_raw)
-    # public_cards = transfer_cards(public_cards_raw)
+    public_cards = transfer_cards(public_cards_raw)
     # hand_cards = hand_cards_raw
-    public_cards = public_cards_raw
+    # public_cards = public_cards_raw
     card_type = None
 
     if hand_cards == []:
@@ -317,7 +319,7 @@ def calculate_max_match(hand_cards_raw:list, public_cards_raw:list)->float:
         # best_match = "类型：如同花顺等"
         best_match, _ = best_hand(public_cards.copy(), hand_cards.copy())
         public_res = win_rate_heads_up[best_match]
-        print(hand_res, public_res)
+        # print(hand_res, public_res)
     return 0.5*hand_res+0.5*public_res
     
     
@@ -325,8 +327,8 @@ def arg_parse():
     parse = argparse.ArgumentParser()
     parse.add_argument("--path", type=str, default="log", help="the path of log")
     dir_lis = os.listdir("log")
-    file_lis = os.listdir("log/"+dir_lis[1])
-    parse.add_argument("--name", type=str, default=dir_lis[1]+"/"+file_lis[-1], help="the name of log_file")
+    file_lis = os.listdir("log/"+dir_lis[2])
+    parse.add_argument("--name", type=str, default=dir_lis[2]+"/"+file_lis[0], help="the name of log_file")
     
     parse.add_argument("--nick", type=str, default="p_13304936695", help="the player you want to analyze")
     parse.add_argument("--opponent", type=str, default="p_13304936695_player1", help="the opponent")
@@ -338,7 +340,9 @@ def arg_parse():
 # 修改round检测逻辑为判断牌桌上公开牌的数量
 def extract_player_info(data, player):
     batches = []
+    # print(len(data))
     for game in data:
+        # print(game)
         this_game_batches = []
         basic_info = game.get("basic_info", {})
         dynamic_info = game.get("dynamic_info", {})
@@ -360,9 +364,14 @@ def extract_player_info(data, player):
         batch = {}
         p_flag = False
         win_flag = True
+        # print(len(round_history))
         for round in round_history:
-            invalid_num = len(round["table_cards"])
-            cards_num = invalid_num
+            # print(round)
+            # invalid_num = len(round["table_cards"])
+            # cards_num = invalid_num
+            
+            invalid_num = round["table_cards"].count(-1)
+            cards_num = 5 - invalid_num
             # print(cards_num)
             if round["player"] != player_info:
                 act = None
@@ -381,22 +390,33 @@ def extract_player_info(data, player):
                         
                     batch["history_action"], batch["bet_history"], batch["stage"] = processor.report_history()
                     this_game_batches.append(batch)
+                    # print(batch)
                     batch = {}
-                    
+                
                     if isdone:
                         processor.update_round(round["player_chips"])
                         # print(this_game_batches)
                         batches.append(this_game_batches)
+                        # print(batches)
                         this_game_batches = []
                     
             else:
                 # print(2)
-                batch["hand_chips"] = round["player_chips"]
+                try:
+                    batch["hand_chips"] = transfer_cards(round["player_chips"])
+                except:
+                    batch["hand_chips"] = round["player_chips"]
                 if -1 in round["table_cards"]:
                     table_valid = round["table_cards"].remove(-1)
                 else:
                     table_valid = round["table_cards"]
+                # print(table_valid)
                 batch["public_cards"] = table_valid
+                act = None
+                if round["type"] == 2:
+                    act = "bet"
+                if round["type"] == 5:
+                    act = "fold"
                 batch["action"] = act
                 batch["hand_cards"] = round["hand_cards"]
                 # 判断一局的胜负
@@ -431,6 +451,7 @@ def main():
     log_file = args.path + "/" + args.name
     # print(log_file)
     data = load_json_file(log_file)
+    # print(data)
     batches = extract_player_info(data, args.nick)
     # print(len(batches))
     scorer = LabelScorer()
@@ -440,7 +461,7 @@ def main():
         if i == []:
             continue
         for k in i:
-            print(k)
+            # print(k)
             node = Node()
             game1.add_node(node, k)
         

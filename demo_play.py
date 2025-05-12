@@ -22,16 +22,18 @@ import socketio
 from typing import Dict, List, Union
 import random
 
-from detect import total_info, all_room_info
+from detect import all_room_info
+from opposetbuild import PokerStateEncoder, PokerSACAgent
 #如果在本地跑的，有问题额外 pip install websocket-client
 URL = "http://54.222.134.57:30003"
 BASE_DIR = ""
 OPEN_ROOM_NUM=3#此处设置脚本开多少个房间
 PATH = os.path.join(BASE_DIR, "client_log")#生成的脚本日志
 
+# 创建场势整合器，决策器和编码器
 all_info = all_room_info()
-# cnt_log = 0
-# Total_info = total_info()
+NickAgent = PokerSACAgent(memo_capacity=100000, alpha=0.0001, beta=0.0001, gamma=0.99, tau=0.001, batch_size=64)
+state_encoder = PokerStateEncoder()
 
 if not os.path.exists(PATH):
     os.makedirs(PATH)

@@ -1,206 +1,181 @@
-import copy
-import logging
-import multiprocessing as mp
-import os
-from pathlib import Path
-from typing import Dict, List, Union  # 修改1：添加Any类型
+import json
 import numpy as np
-import multiprocessing as mp
-from pathlib import Path
-from typing import Callable, Optional
+import torch
+from opposetbuild import PokerSACAgent
 
-import joblib
-manager = mp.Manager()
-class Player:
-    def __init__(self, hand: List[str], chips: int):
-        self.hand = hand
-        self.chips = chips
-        self.current_bet = 0
-        self.is_active = True
-
-class Agent:
-    """
-    Create agent, optionally initialise to agent specified at path.
-
-    ...
-
-    Attributes
-    ----------
-    strategy : Dict[str, Dict[str, int]]
-        The preflop strategy for an agent.
-    regret : Dict[str, Dict[strategy, int]]
-        The regret for an agent.
-    """
-    def __init__(
-        self,
-        agent_path: Optional[Union[str, Path]] = None,
-        use_manager: bool = True,
-    ):
-        """Construct an agent."""
-        # Don't use manager if we are running tests.
-        testing_suite = bool(os.environ.get("TESTING_SUITE", False))
-        use_manager = use_manager and not testing_suite
-        dict_constructor: Callable = manager.dict if use_manager else dict
-        self.strategy = dict_constructor()
-        self.regret = dict_constructor()
-        if agent_path is not None:
-            saved_agent = joblib.load(agent_path)
-            # Assign keys manually because I don't trust the manager proxy.
-            for info_set, value in saved_agent["regret"].items():
-                self.regret[info_set] = value
-            for info_set, value in saved_agent["strategy"].items():
-                self.strategy[info_set] = value
-
-
-class PokerState:
-    def __init__(self, players: List[Player], board: List[str], pot: int, current_player: int):
-        self.player_i = 
-        self.players = players
-        self.is_terminal = False
+class PokerStateEncoder:
+    def __init__(self, player_seat_id=3):
+        self.player_seat_id = player_seat_id  # 需要监控的玩家座位ID
+        self.max_chips = 2000  # 归一化参考值
+        self.max_public_cards = 5  # 最多5张公共牌
         
-        self.info_set = 
-        self.inital_regret = 0
-        
-        self.payout = 
-        self.legal_actions = ["FOLD", "CHECK", "CALL", "BET"]
-        self.inital_regret = 
-    
-    def get_stage(self, stage:int):
-        if stage == "SHUTDOWN":
-            self.is_terminal = True
-            
-            
-    def apply_action(self, action:str):
-        
-    
-    
-        
-        
-
-def calculate_strategy(this_info_sets_regret: Dict[str, float]) -> Dict[str, float]:
-    """
-    Calculate the strategy based on the current information sets regret.
-
-    ...
-
-    Parameters
-    ----------
-    this_info_sets_regret : Dict[str, float]
-        Regret for each action at this info set.
-
-    Returns
-    -------
-    strategy : Dict[str, float]
-        Strategy as a probability over actions.
-    """
-    # TODO: Could we instanciate a state object from an info set?
-    actions = this_info_sets_regret.keys()
-    regret_sum = sum([max(regret, 0) for regret in this_info_sets_regret.values()])
-    if regret_sum > 0:
-        strategy: Dict[str, float] = {
-            action: max(this_info_sets_regret[action], 0) / regret_sum
-            for action in actions
+        # 映射表初始化
+        self.rank_map = {'2':0, '3':1, '4':2, '5':3, '6':4,
+                        '7':5, '8':6, '9':7, 'T':8, 'J':9,
+                        'Q':10, 'K':11, 'A':12}
+        self.suit_map = {'c':0, 'd':1, 'h':2, 's':3}
+        self.stage_map = {
+            "PREFLOP": 0,
+            "FLOP": 1,
+            "TURN": 2,
+            "RIVER": 3,
+            "SHOWDOWN": 4
         }
-    else:
-        default_probability = 1 / len(actions)
-        strategy: Dict[str, float] = {action: default_probability for action in actions}
-    return strategy
+
+    def _parse_card(self, card):
+        """解析单张牌的数字或字符串表示"""
+        if isinstance(card, int):  # 处理数值型表示
+            rank = card // 13
+            suit = card % 13
+            return [rank, suit] if suit < 4 else [rank, suit-13]  # 修正错误编码
+        elif isinstance(card, str):  # 处理字符串表示 "3c"
+            return [self.rank_map[card[0]], self.suit_map[card[1]]]
+        return [0, 0]  # 空牌填充
+
+    def _get_current_stage(self, data):
+        """获取当前游戏阶段"""
+        # 从最后一条非SHOWDOWN的记录获取当前阶段
+        for record in reversed(data["dynamic_info"]["round_history"]):
+            if record["stage"] != "SHOWDOWN":
+                return record["stage"]
+        return "PREFLOP"
+
+    def encode(self, json_data):
+        # 加载JSON数据
+        data = json.loads(json_data) if isinstance(json_data, str) else json_data
+        
+        # 初始化特征容器
+        features = []
+
+        # 1. 手牌特征 --------------------------------------------------
+        player_hand = []
+        for record in data["dynamic_info"]["round_history"]:
+            if record["player"] == self.player_seat_id and record["hand_cards"]:
+                player_hand = record["hand_cards"]
+                break
+        
+        # 解析手牌 (2张)
+        hand_feature = []
+        for card in player_hand[:2]:  # 只取前两张
+            parsed = self._parse_card(card)
+            hand_feature.extend(parsed)
+        # 填充不足的牌
+        hand_feature += [0, 0]*(2 - len(player_hand))
+        features.extend(hand_feature)
+
+        # 2. 公共牌特征 -----------------------------------------------
+        table_cards = []
+        current_stage = self._get_current_stage(data)
+        # 找到最新有效的公共牌记录
+        for record in reversed(data["dynamic_info"]["round_history"]):
+            if record["table_cards"] and isinstance(record["table_cards"][0], (int, str)):
+                table_cards = record["table_cards"]
+                break
+        
+        # 解析公共牌 (最多5张)
+        public_feature = []
+        for card in table_cards[:self.max_public_cards]:
+            parsed = self._parse_card(card)
+            public_feature.extend(parsed)
+        # 填充不足的牌
+        public_feature += [0, 0]*(self.max_public_cards - len(table_cards))
+        features.extend(public_feature)
+
+        # 3. 筹码特征 -------------------------------------------------
+        player_chips = next((s["hand_chips"] for s in data["basic_info"]["seat_info"] 
+                          if s["seatid"] == self.player_seat_id), 0)
+        # opponent_seat = 4 if self.player_seat_id == 3 else 3
+        opponent_chips = next((s["hand_chips"] for s in data["basic_info"]["seat_info"] 
+                             if s["seatid"] != self.player_seat_id), 0)
+        
+        # 计算底池
+        pot = sum([r.get("bet",0) for r in data["dynamic_info"]["round_history"]])
+        
+        # 归一化处理
+        chip_features = [
+            player_chips / self.max_chips,
+            opponent_chips / self.max_chips,
+            pot / self.max_chips
+        ]
+        features.extend(chip_features)
+
+        # 4. 位置特征 -------------------------------------------------
+        position = [0, 0, 0]  # [庄家, 小盲, 大盲]
+        dealer_id = data["basic_info"]["dealer_info"]["seatid"]
+        if self.player_seat_id == dealer_id:
+            position[0] = 1
+        if self.player_seat_id == data["basic_info"]["blind"]["small_blind"]["seatid"]:
+            position[1] = 1
+        if self.player_seat_id == data["basic_info"]["blind"]["big_blind"]["seatid"]:
+            position[2] = 1
+        features.extend(position)
+
+        # 5. 阶段特征 -------------------------------------------------
+        stage_onehot = [0]*5
+        stage_onehot[self.stage_map[current_stage]] = 1
+        features.extend(stage_onehot)
+
+        # 6. 对手行为特征 ---------------------------------------------
+        opponent_actions = []
+        for r in data["dynamic_info"]["round_history"]:
+            if r["player"] != self.player_seat_id:
+                opponent_actions.append(r.get("type", 0))
+        
+        # 统计动作类型：0-弃牌，1-跟注，2-加注
+        action_counts = [0, 0, 0]
+        for a in opponent_actions[-10:]:  # 只看最近10个动作
+            if 0 <= a <= 2:
+                action_counts[a] += 1
+        total = len(opponent_actions) or 1
+        aggression = action_counts[2] / total  # 加注频率
+        features.append(aggression)
+
+        # 转换为numpy数组并确保维度
+        state_vector = np.array(features, dtype=np.float32)
+        
+        # 最终维度验证
+        expected_dim = 2*2 + 5*2 + 3 + 3 + 5 + 1
+        assert len(state_vector) == expected_dim, \
+            f"维度错误: 预期{expected_dim}, 实际{len(state_vector)}"
+        
+        return state_vector
+
+def load_json_file(file_path):
+    data = []
+    with open(file_path, "r") as f:
+        content = f.read()
+    
+    # 假设每个 JSON 对象之间有一个空行作为分隔符
+    json_objects = content.split("\n\n")
+    
+    for json_str in json_objects:
+        try:
+            # 尝试解析每个 JSON 对象
+            json_obj = json.loads(json_str)
+            data.append(json_obj)
+        except json.JSONDecodeError as e:
+            print(f"Error parsing JSON: {e}")
+            continue
+    
+    return data
 
 
-
-def cfrp(
-    agent: Agent,
-    state: PokerState,
-    i: int,
-    t: int,
-    c: int,
-    locks: Dict[str, mp.synchronize.Lock] = {},
-):
-    """
-    Counter factual regret minimazation with pruning.
-
-    ...
-
-    Parameters
-    ----------
-    agent : Agent
-        Agent being trained.
-    state : ShortDeckPokerState
-        Current game state.
-    i : int
-        The Player.
-    t : int
-        The iteration.
-    locks : Dict[str, mp.synchronize.Lock]
-        The locks for multiprocessing
-    """
-    ph = state.player_i
-
-    player_not_in_hand = not state.players[i].is_active
-    if state.is_terminal or player_not_in_hand:
-        return state.payout[i]
-
-    elif ph == i:
-        # calculate strategy
-        this_info_sets_regret = agent.regret.get(state.info_set, state.initial_regret)
-        sigma = calculate_strategy(this_info_sets_regret)
-        vo = 0.0
-        voa: Dict[str, float] = dict()
-        # Explored dictionary to keep track of regret updates that can be
-        # skipped.
-        explored: Dict[str, bool] = {action: False for action in state.legal_actions}
-        # Get the regret for this state.
-        this_info_sets_regret = agent.regret.get(state.info_set, state.initial_regret)
-        for action in state.legal_actions:
-            if this_info_sets_regret[action] > c:
-                new_state: PokerState = state.apply_action(action)
-                voa[action] = cfrp(agent, new_state, i, t, c, locks)
-                explored[action] = True
-                vo += sigma[action] * voa[action]
-        if locks:
-            locks["regret"].acquire()
-        # Get the regret for this state again, incase any other process updated
-        # it whilst we were doing `cfrp`.
-        this_info_sets_regret = agent.regret.get(state.info_set, state.initial_regret)
-        for action in state.legal_actions:
-            if explored[action]:
-                this_info_sets_regret[action] += voa[action] - vo
-        # Update the master copy of the regret.
-        agent.regret[state.info_set] = this_info_sets_regret
-        if locks:
-            locks["regret"].release()
-        return vo
-    else:
-        this_info_sets_regret = agent.regret.get(state.info_set, state.initial_regret)
-        sigma = calculate_strategy(this_info_sets_regret)
-        available_actions: List[str] = list(sigma.keys())
-        action_probabilities: List[float] = list(sigma.values())
-        action: str = np.random.choice(available_actions, p=action_probabilities)
-        new_state: PokerState = state.apply_action(action)
-        return cfrp(agent, new_state, i, t, c, locks)
-
+# 测试用例 --------------------------------------------------------
 if __name__ == "__main__":
-    # 测试案例
-    player0 = Player(hand=['Ah', 'Kh'], chips=1000)
-    player1 = Player(hand=['Qc', 'Jc'], chips=1000)
-    initial_state = PokerState(
-        players=[player0, player1],
-        board=[],
-        pot=0,
-        current_player=0
-    )
+    # 加载示例数据
+    # with open("log/cAMPSRjo/log20250510_164759.json") as f:
+    #     sample_data = load_json_file(f)
+    sample_data = load_json_file("log/cAMPSRjo/log20250510_164759.json")
+    sample_data = sample_data[1]
     
-    agent = Agent()
+    encoder = PokerStateEncoder(player_seat_id=3)
     
-    # 简单训练
-    for t in range(1, 3):  # 减少迭代次数方便测试
-        for i in range(2):
-            cfrp(agent, initial_state, i, t, c=0)
+    # 执行编码
+    state = encoder.encode(sample_data)
+    state = torch.tensor(state)
+    print("编码后的状态向量:")
+    print(type(state))
+    print(f"向量维度: {len(state)}")
     
-    # 输出结果
-    print("训练结果示例:")
-    for info_set, regret in agent.regret.items():
-        print(f"信息集: {info_set}")
-        strategy = calculate_strategy(regret)
-        for action, prob in strategy.items():
-            print(f"  {action}: {prob:.2%}")
+    # 维度验证
+    assert len(state) == (4 + 10 + 3 + 3 + 5 + 1), "特征维度不匹配"
