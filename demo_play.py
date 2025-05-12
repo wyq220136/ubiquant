@@ -171,16 +171,21 @@ class Socker:
                             case "amount":
                                 BetAction['Bet'] = v
                             case "callbet":
-                                BetAction['Bet']=data['BetLimit'][0]
-                                BetAction['Type'] = 2
+                                if v == 1:
+                                    BetAction['Bet']=data['BetLimit'][0]
+                                    BetAction['Type'] = 2
                             case "raisebet":
-                                BetAction['Type'] = 2
+                                if v == 1:
+                                    BetAction['Type'] = 2
                             case "allin":
-                                BetAction['Type'] = 3
+                                if v == 1:
+                                    BetAction['Type'] = 3
                             case "check":
-                                BetAction['Type'] = 2
+                                if v == 1:
+                                    BetAction['Type'] = 2
                             case "giveup":
-                                BetAction['Type'] = 2
+                                if v == 1:
+                                    BetAction['Type'] = 2
                         # print(BetAction)
                     #这里是随机bet一个数量的示例
                     # BetAction={}
