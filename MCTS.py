@@ -5,6 +5,7 @@ import argparse
 import json
 import os
 from log_processor import RoundInfoManager
+from opposetbuild import OpponentAnalysis
 # 通过牌面好坏的对照表计算惩罚率
 card_sequence = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"]
 
@@ -37,6 +38,12 @@ class Node:
         self.act_his = batch["history_action"]
         self.bet_his = batch["bet_history"]
         self.hand_chips = batch["hand_chips"]
+        self.totalbet = batch["totalbet"]
+        self.player = batch["player"]
+        self.location = batch["location"]
+        self.oppo_totalbet = batch["oppo_totalbet"]
+        self.aggression = batch["aggression"]
+        self.oppo_fold = batch["oppo_fold"]
     
     def calculate_value(self, baseline:float, c_puct:float):
         # 仅适用于叶子节点，baseline是基础奖罚值，c_puct是根据手牌获得的倍率
@@ -78,7 +85,7 @@ class node_list:
         self.node_now.add_child(node)
         self.node_now = node
         self.node_counter += 1
-        print(f"Node number is {self.node_counter}")
+        # print(f"Node number is {self.node_counter}")
     
     def backbone(self, c_puct:float):
         # 从叶节点开始计算
@@ -101,7 +108,13 @@ class node_list:
             "history_action": [],
             "bet_history": [],
             "hand_chips": [],
-            "value": []
+            "value": [],
+            "totalbet": [],
+            "player":  [],
+            "location": [],
+            "oppo_totalbet": [],
+            "aggression": [],
+            "oppo_fold": []
         }
         
         current_node = self.root.children
@@ -115,6 +128,13 @@ class node_list:
             # print(result["bet_history"])
             result["hand_chips"].append(current_node.hand_chips)
             result["value"].append(current_node.value)
+            result["totalbet"].append(current_node.totalbet)
+            result["player"].append(current_node.player)
+            result["location"].append(current_node.location)
+            result["oppo_totalbet"].append(current_node.oppo_totalbet)
+            result["aggression"].append(current_node.aggression)
+            result["oppo_fold"].append(current_node.oppo_fold)
+
             current_node = current_node.children
         return result
 
@@ -130,7 +150,13 @@ class LabelScorer:
             # 每一个元素也是一个列表，记录前两回合玩家押注情况
             "bet_history":[],
             # 我的筹码数量
-            "hand_chips":[]
+            "hand_chips":[],
+            "totalbet": [],
+            "player": [],
+            "location": [],
+            "oppo_totalbet": [],
+            "aggression": [],
+            "oppo_fold": []
         }
         
         self.path = "data.csv"
@@ -168,7 +194,14 @@ class LabelScorer:
                 f"Action: {self.result['action'][i]}, "
                 f"History Actions: [{formatted_actions}], "
                 f"Bet History: [{formatted_bets}], "
-                f"Chips: {self.result['hand_chips'][i]}"
+                f"Chips: {self.result['hand_chips'][i]}, "
+                f"Totalbet: {self.result['totalbet'][i]}, "
+                f"Player: {self.result['player'][i]}, "
+                f"Location: {self.result['location'][i]}, "
+                f"Oppo_totalbet: {self.result['oppo_totalbet'][i]}, "
+                f"Aggression: {self.result['aggression'][i]}, "
+                f"oppo_fold: {self.result['oppo_fold'][i]}"
+
             )
             # print(type(desc))
             prompts.append(desc)
@@ -317,7 +350,7 @@ def calculate_max_match(hand_cards_raw:list, public_cards_raw:list)->float:
         # best_match = "类型：如同花顺等"
         best_match, _ = best_hand(public_cards.copy(), hand_cards.copy())
         public_res = win_rate_heads_up[best_match]
-        print(hand_res, public_res)
+        # print(hand_res, public_res)
     return 0.5*hand_res+0.5*public_res
     
     
@@ -341,6 +374,7 @@ def extract_player_info(data, player):
     for game in data:
         this_game_batches = []
         basic_info = game.get("basic_info", {})
+        # print(basic_info)
         dynamic_info = game.get("dynamic_info", {})
         round_history = dynamic_info.get("round_history", [])
 
@@ -350,6 +384,7 @@ def extract_player_info(data, player):
 
         # 提取玩家和对手的基本信息
         for seat in basic_info.get("seat_info", []):
+            # print(seat['seatid'])
             if seat.get("usrname") == player:
                 player_info = seat["seatid"]
                 init_hand_chips = seat["hand_chips"]
@@ -360,17 +395,31 @@ def extract_player_info(data, player):
         batch = {}
         p_flag = False
         win_flag = True
+        totalbet = 0
+        oppo = {}
+
         for round in round_history:
+            # print(round)
             invalid_num = len(round["table_cards"])
             cards_num = invalid_num
+            totalbet += round["bet"]
             # print(cards_num)
             if round["player"] != player_info:
+               
                 act = None
                 if round["type"] == 2:
                     act = "bet"
                 if round["type"] == 5:
                     act = "fold"
+
+                if round["player"] not in oppo:
+                    new_oppo = OpponentAnalysis(round["player"])
+                    oppo[round["player"]] = new_oppo
+
+                oppo[round["player"]].calculate_new_aggression(round["type"])
+
                 p_flag, isdone = processor.get_extern_info(cards_num, act, round["bet"])
+                # print(p_flag, isdone)
                 if p_flag:
                     p_flag = False
                     
@@ -379,7 +428,24 @@ def extract_player_info(data, player):
                     else:
                         batch["winner"] = -1
                         
+                    if basic_info['blind']['big_blind']['seatid'] == round["player"]:
+                        batch["location"] = 1
+                    elif basic_info['blind']['small_blind']['seatid'] == round["player"]:
+                        batch["location"] = 2
+                    elif basic_info['dealer_info']['seatid'] == round["player"]:
+                        batch["location"] = 3
+                    else:
+                        batch["location"] = 4
+                        
                     batch["history_action"], batch["bet_history"], batch["stage"] = processor.report_history()
+                    batch["totalbet"] = totalbet
+                    # print(totalbet)
+                    batch["player"] = round["player"]
+                    oppo_repo = oppo[round["player"]].report()
+                    batch["oppo_totalbet"] = oppo_repo["total_bet"]
+                    batch["aggression"] = oppo_repo["aggression"]
+                    batch["oppo_fold"] = oppo_repo["fold"]
+
                     this_game_batches.append(batch)
                     batch = {}
                     
@@ -388,6 +454,7 @@ def extract_player_info(data, player):
                         # print(this_game_batches)
                         batches.append(this_game_batches)
                         this_game_batches = []
+                        totalbet = 0
                     
             else:
                 # print(2)
@@ -429,7 +496,7 @@ def load_json_file(file_path):
 def main():
     args = arg_parse()
     log_file = args.path + "/" + args.name
-    # print(log_file)
+    print(args.nick)
     data = load_json_file(log_file)
     batches = extract_player_info(data, args.nick)
     # print(len(batches))
@@ -440,7 +507,7 @@ def main():
         if i == []:
             continue
         for k in i:
-            print(k)
+            # print(k)
             node = Node()
             game1.add_node(node, k)
         
