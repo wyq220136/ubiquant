@@ -2,7 +2,7 @@ import json
 import os
 from datetime import datetime
 import pandas as pd
-import threading
+from opposetbuild import PokerStateEncoder
 
 card_sequence = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"]
 
@@ -184,7 +184,14 @@ class total_info:
         self.winner = None
         self.isdone = False # 记录对局是否完成
         self.player_cards = {}
+        
+        self.hero_name = "p_13304936695"
         # self.lock = threading.Lock()
+        
+        self.bet_all = 0
+        
+        # 编码状态信息
+        self.state_encoder = PokerStateEncoder()
         
     
     def load_static(self, small_blind: int, big_blind: int, dealer: int, player_list: list, bet_list:list):
@@ -192,6 +199,12 @@ class total_info:
         sb, bb, dl, pl, b1 = self._init_params
         self.basic_info.load_static_info(sb, bb, dl, pl, b1)
         self.dynamic_info.copy_nick_info(self.basic_info.seat_info)
+        for i in self.basic_info.seat_info.values():
+            if i.usrname == self.hero_name:
+                self.state_encoder.player_seat_id = i.seatid
+        data = self.basic_info.report()
+        self.state_encoder.load_all_nick(data)
+        
         
     def report(self)->dict:
         dic = {
@@ -206,9 +219,23 @@ class total_info:
             self.logger.write_log(self.report())
             self.isdone = False
         
-    def update_all(self, batch, round_num, bet, table_cards):
+    def update_all(self, batch, round_num, bet, table_cards, pot_bet):
         self.basic_info.update_player_info(batch, bet)
         self.dynamic_info.update_round_info(batch, round_num, table_cards, self.player_cards.get(batch["SeatId"], []))
+        
+        # 计算当前池底的大小
+        self.bet_all = sum(pot_bet)
+        # self.report_rl()
+        if batch["SeatId"] != self.state_encoder.player_seat_id:
+            self.state_encoder.update_chips(self.dynamic_info.nick_info[batch["SeatId"]].hand_chips, batch["SeatId"])
+            
+            act = None
+            if batch["Type"] == 5:
+                act = 0
+            else:
+                act = 1
+            
+            self.state_encoder.update_oppoaction(act, batch["SeatId"])
         
         if batch["Type"] == 5:
             self.basic_info.seat_info[batch["SeatId"]].is_active = False
@@ -232,6 +259,16 @@ class total_info:
         if nick not in self.player_cards: 
             return []
         return self.player_cards[nick]
+    
+    # 为了编码单独封出来功能接口
+    def report_rl(self, action, round_num, table_cards):
+        tmp_encode = round_info(action["Type"], action["Bet"], action["SeatId"], round_num, table_cards)
+        tmp_encode.load_hand_chips(self.dynamic_info.nick_info[action["SeatId"]].hand_chips)
+        round_res = tmp_encode.report()
+        round_res["all_bet"] = self.bet_all
+        # del tmp_encode
+        state_vector = self.state_encoder.encode(round_res)
+        return state_vector
     
     
 class logger:
@@ -262,8 +299,8 @@ class all_room_info:
             self.room_number += 1
         
             
-    def update_room(self, rid:str, batch, round_num, bet, table_cards):
-        self.room_manage[rid].update_all(batch, round_num, bet, table_cards)
+    def update_room(self, rid:str, batch, round_num, bet, table_cards, pot_bet):
+        self.room_manage[rid].update_all(batch, round_num, bet, table_cards, pot_bet)
         
         if self.linear_data == None:
             tmp_list = []

@@ -23,7 +23,7 @@ from typing import Dict, List, Union
 import random
 
 from detect import all_room_info
-from opposetbuild import PokerStateEncoder, PokerSACAgent
+from opposetbuild import PokerSACAgent
 #如果在本地跑的，有问题额外 pip install websocket-client
 URL = "http://54.222.134.57:30003"
 BASE_DIR = ""
@@ -33,7 +33,6 @@ PATH = os.path.join(BASE_DIR, "client_log")#生成的脚本日志
 # 创建场势整合器，决策器和编码器
 all_info = all_room_info()
 NickAgent = PokerSACAgent(memo_capacity=100000, alpha=0.0001, beta=0.0001, gamma=0.99, tau=0.001, batch_size=64)
-state_encoder = PokerStateEncoder()
 
 if not os.path.exists(PATH):
     os.makedirs(PATH)
@@ -140,7 +139,7 @@ class Socker:
                 all_info.load_room(rid)
                 all_info.load_room_static(rid, data["GameStatus"]["SBCur"], data["GameStatus"]["BBCur"], data["GameStatus"]["DealerCur"], data['GamePlayer']["NickName"], data["TableStatus"]["User"]["HandChips"])
                 # print(type(data["GameStatus"]["LastAction"]), type(data['GamePlayer']))
-                all_info.update_room(rid, data["GameStatus"]["LastAction"]["LastAction"], data["GameStatus"]["Round"], data["TableStatus"]["User"]["HandChips"], data["TableStatus"]["TableCard"])
+                all_info.update_room(rid, data["GameStatus"]["LastAction"]["LastAction"], data["GameStatus"]["Round"], data["TableStatus"]["User"]["HandChips"], data["TableStatus"]["TableCard"], data["TableStatus"]["User"]["TotalBet"])
                 # self.player.set_joined_rooms(rid, AttrEnum.table_info, data)
                 # print(f'{self.current_username} {rid} |Room| ', event, data)
                 return
@@ -149,7 +148,7 @@ class Socker:
                 #如果需要牌桌结算信息，读取这个信息
                 # Total_info.keep(data["Result"]["Winner"])
                 all_info.set_room_winnner(rid, data["Result"]["Winner"])
-                # print(f'{self.current_username} {rid} |Room| ', event, data)
+                print(f'{self.current_username} {rid} |Room| ', event, data)
                 return
 
     # 响应处理服务器定向推给个人的
@@ -165,7 +164,9 @@ class Socker:
                     # print(f'{self.current_username} {rid}  PLAY_ACTION  ', event, table_info)
                     hand_cards=self.player.get_joined_room_attr(rid, AttrEnum.cards)
                     # 这里是给到的一个demo ai示例 调用AI_bet.py中的ai函数即可
-                    print(table_info, hand_cards)
+                    # print(table_info, hand_cards)
+                    state_vector = all_info[rid].report_rl(table_info["GameStatus"]["LastAction"]["LastAction"], table_info["GameStatus"]["Round"], table_info["TableStatus"]["TableCard"])
+                    action_name, action_onehot = NickAgent.select_action(state_vector)
                     decision = ai(table_info, hand_cards['Cards'][0]['card'])
                     for k, v in decision.items():
                         BetAction = {'Bet': 0, 'SeatId': table_info['GameStatus']['NowAction']['SeatId'], 'Type': 5}

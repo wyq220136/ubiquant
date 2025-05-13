@@ -35336,3 +35336,533 @@ UPDATE_ROOM on_room_message-----"SeatId 1 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
 
 UPDATE_USER_CARDS on_user_message-----{"Rid": "cAMPSRjo", "Cards": [{"uid": "IYHzYEgp", "seatId": 4, "card": [33, 9]}]}
 
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 4, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 3, "stack": 0, "buyIn": 0, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [40, 8]}]}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 1, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 5, "stack": 0, "buyIn": 0, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [32, 25]}]}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 0, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 2, "stack": 0, "buyIn": 0, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [48, 30]}]}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 4, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 3, "stack": 2000, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [40, 8]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 1, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 5, "stack": 2000, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [32, 25]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----"SeatId 3 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 0, "stack": 1990, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 2, "stack": 2010, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [48, 30]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 1 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [35, 46]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 0 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [37, 33]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [20, 23]}]}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 4, "stack": 2010, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 3, "stack": 1990, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [27, 13]}]}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 1, "stack": 1990, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 5, "stack": 2010, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [24, 19]}]}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 0, "stack": 1990, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 2, "stack": 2010, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 4, "stack": 2010, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 3, "stack": 1990, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [27, 13]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 1, "stack": 1990, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 5, "stack": 2010, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [24, 19]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----"SeatId 4 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_ROOM on_room_message-----"SeatId 5 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 0, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 2, "stack": 2000, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [29, 30]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [45, 22]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 2 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [38, 51]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [18, 46]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----"SeatId 3 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_ROOM on_room_message-----"SeatId 1 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [49, 40]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 0 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 4, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 3, "stack": 2000, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [22, 21]}]}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 1, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 5, "stack": 2000, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [20, 45]}]}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 0, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 2, "stack": 2000, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [5, 29]}]}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 4, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 3, "stack": 2000, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [22, 21]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 1, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 5, "stack": 2000, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [20, 45]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----"SeatId 3 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 0, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 2, "stack": 2000, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [5, 29]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_ROOM on_room_message-----"SeatId 1 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [13, 31]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 0 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [38, 2]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [15, 33]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----"SeatId 4 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_ROOM on_room_message-----"SeatId 5 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [19, 18]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 2 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [32, 13]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [45, 46]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 4, "stack": 2010, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 3, "stack": 1990, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 1, "stack": 1990, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 5, "stack": 2010, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 0, "stack": 1990, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 2, "stack": 2010, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----"SeatId 4 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 4, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 3, "stack": 2000, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [23, 29]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_ROOM on_room_message-----"SeatId 5 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [5, 4]}]}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 1, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 5, "stack": 2000, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [-1, -1]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 2 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [11, 18]}]}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 0, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 2, "stack": 2000, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [-1, -1]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [17, 26]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----"SeatId 3 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_ROOM on_room_message-----"SeatId 1 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [49, 48]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 0 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [41, 24]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [38, 6]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----"SeatId 4 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_ROOM on_room_message-----"SeatId 5 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [38, 42]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 2 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [28, 2]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [40, 3]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----"SeatId 3 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_ROOM on_room_message-----"SeatId 1 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [47, 28]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 0 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [5, 6]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [8, 40]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----"SeatId 4 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_ROOM on_room_message-----"SeatId 5 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [19, 10]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 2 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [38, 33]}]}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 4, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 3, "stack": 2000, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 1, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 5, "stack": 2000, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----"SeatId 3 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 0, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 2, "stack": 2000, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_ROOM on_room_message-----"SeatId 1 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 4, "stack": 2010, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 3, "stack": 1990, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [-1, -1]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [20, 19]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 0 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [5, 37]}]}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 1, "stack": 1990, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 5, "stack": 2010, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [5, 37]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [33, 28]}]}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 0, "stack": 1990, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 2, "stack": 2010, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [33, 28]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----"SeatId 4 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_ROOM on_room_message-----"SeatId 5 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [12, 36]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 2 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [25, 20]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [5, 42]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----"SeatId 3 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_ROOM on_room_message-----"SeatId 1 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [17, 28]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 0 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [1, 22]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [4, 27]}]}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 4, "stack": 2010, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 3, "stack": 1990, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_ROOM on_room_message-----"SeatId 3 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 1, "stack": 1990, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 5, "stack": 2010, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 0, "stack": 1990, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 2, "stack": 2010, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [27, 36]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [26, 27]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [7, 8]}]}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 4, "stack": 2010, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 3, "stack": 1990, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [26, 27]}]}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 1, "stack": 1990, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 5, "stack": 2010, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [27, 36]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 0, "stack": 1990, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 2, "stack": 2010, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [7, 8]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_ROOM on_room_message-----"SeatId 5 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----"SeatId 4 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----"SeatId 2 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [39, 50]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [41, 51]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [6, 3]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM on_room_message-----"SeatId 1 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----"SeatId 3 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [3, 48]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [30, 13]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 0 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [40, 38]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM on_room_message-----"SeatId 5 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----"SeatId 4 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [13, 41]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [29, 6]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 2 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [40, 27]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM on_room_message-----"SeatId 1 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----"SeatId 3 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [50, 0]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [38, 41]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 0 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [50, 10]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM on_room_message-----"SeatId 4 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----"SeatId 5 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [1, 26]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [50, 41]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 2 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [9, 14]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM on_room_message-----"SeatId 1 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----"SeatId 3 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 4, "stack": 2010, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 3, "stack": 1990, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 1, "stack": 1990, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 5, "stack": 2010, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 0, "stack": 1990, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 2, "stack": 2010, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 4, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 3, "stack": 2000, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [42, 1]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----"SeatId 4 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 1, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 5, "stack": 2000, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [44, 27]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 5 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [38, 22]}]}
+
+UPDATE_ROOM_USERS on_user_message-----{"dBS8jzhD": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2302, "nickname": "IFDBxkeq", "roles": ["user", "p_player"], "updated_time": "2025-05-12 22:33:50", "username": "p_13304936695", "seatNum": 0, "stack": 2000, "buyIn": 2000, "buyOut": 0}, "IYHzYEgp": {"auto_straddle": true, "create_time": "2025-04-15 16:36:36", "id": 2303, "nickname": "PFGRqcra", "roles": ["player", "user", "p_player"], "updated_time": "2025-05-12 22:46:59", "username": "p_13304936695_player1", "seatNum": 2, "stack": 2000, "buyIn": 2000, "buyOut": 0}}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [44, 51]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [9, 14]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 2 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [6, 28]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----"SeatId 3 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----"SeatId 1 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [7, 40]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [9, 2]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 0 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "9M1t7bXH", "Cards": [{"uid": "IYHzYEgp", "seatId": 2, "card": [16, 35]}]}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6c34\u871c\u6843 4113", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "iQvRjLPS", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103636990}
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u67e0\u6aac8061", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "XeSi2Rpq", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103634825}
+
+UPDATE_ROOM on_room_message-----"SeatId 4 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----"SeatId 5 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
+UPDATE_ROOM on_room_message-----{"pin": "qwe", "max_players": 13, "name": "\u6728\u74dc5121", "max_player": 6, "auto_sit": 1, "auto_buy_chips": 1, "allow_straddle": 0, "min_hand_chips": 500, "max_hand_chips": 99999999, "small_blind": 10, "big_blind": 20, "request_time_out": 5, "limit_time": 720, "rid": "9M1t7bXH", "owner": "dBS8jzhD", "is_auto": 1, "seat_list": [], "finish_timestamp": 1747103639173}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "iQvRjLPS", "Cards": [{"uid": "IYHzYEgp", "seatId": 3, "card": [36, 42]}]}
+
+UPDATE_USER_CARDS on_user_message-----{"Rid": "XeSi2Rpq", "Cards": [{"uid": "IYHzYEgp", "seatId": 5, "card": [42, 37]}]}
+
+UPDATE_ROOM on_room_message-----"SeatId 2 \u8d85\u65f6,\u81ea\u52a8fold\u724c!"
+
