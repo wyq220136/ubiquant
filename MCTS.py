@@ -327,8 +327,8 @@ def arg_parse():
     parse = argparse.ArgumentParser()
     parse.add_argument("--path", type=str, default="log", help="the path of log")
     dir_lis = os.listdir("log")
-    file_lis = os.listdir("log/"+dir_lis[2])
-    parse.add_argument("--name", type=str, default=dir_lis[2]+"/"+file_lis[0], help="the name of log_file")
+    file_lis = os.listdir("log/"+dir_lis[0])
+    parse.add_argument("--name", type=str, default=dir_lis[0]+"/"+file_lis[-1], help="the name of log_file")
     
     parse.add_argument("--nick", type=str, default="p_13304936695", help="the player you want to analyze")
     parse.add_argument("--opponent", type=str, default="p_13304936695_player1", help="the opponent")
@@ -365,21 +365,37 @@ def extract_player_info(data, player):
         p_flag = False
         win_flag = True
         # print(len(round_history))
+        
+        # 游戏是否继续
+        # is_continue = True
         for round in round_history:
             # print(round)
             # invalid_num = len(round["table_cards"])
             # cards_num = invalid_num
             
+            # 判断一个回合下来我有没有死
             invalid_num = round["table_cards"].count(-1)
             cards_num = 5 - invalid_num
-            # print(cards_num)
+            
+            if cards_num == 0:
+                if this_game_batches != []:
+                    for batch in reversed(this_game_batches):
+                            if "hand_cards" not in batch:
+                                this_game_batches.pop()
+                            else:
+                                break
+                    batches.append(this_game_batches)
+                    this_game_batches = []
+
             if round["player"] != player_info:
-                act = None
+                act = ""
                 if round["type"] == 2:
                     act = "bet"
                 if round["type"] == 5:
                     act = "fold"
+                
                 p_flag, isdone = processor.get_extern_info(cards_num, act, round["bet"])
+                    
                 if p_flag:
                     p_flag = False
                     
@@ -394,14 +410,10 @@ def extract_player_info(data, player):
                     batch = {}
                 
                     if isdone:
-                        processor.update_round(round["player_chips"])
-                        # print(this_game_batches)
                         batches.append(this_game_batches)
-                        # print(batches)
                         this_game_batches = []
                     
             else:
-                # print(2)
                 try:
                     batch["hand_chips"] = transfer_cards(round["player_chips"])
                 except:
@@ -412,13 +424,14 @@ def extract_player_info(data, player):
                     table_valid = round["table_cards"]
                 # print(table_valid)
                 batch["public_cards"] = table_valid
-                act = None
+                act = ""
                 if round["type"] == 2:
                     act = "bet"
                 if round["type"] == 5:
                     act = "fold"
                 batch["action"] = act
                 batch["hand_cards"] = round["hand_cards"]
+                processor.update_round(round["player_chips"])
                 # 判断一局的胜负
                 if processor.stage == "RIVER":
                     if round["player_chips"] < player_chips_now:
@@ -434,7 +447,6 @@ def load_json_file(file_path):
     
     # 假设每个 JSON 对象之间有一个空行作为分隔符
     json_objects = content.split("\n\n")
-    
     for json_str in json_objects:
         try:
             # 尝试解析每个 JSON 对象
@@ -457,12 +469,12 @@ def main():
     scorer = LabelScorer()
     for i in batches:
         game1 = node_list()
-
         if i == []:
             continue
         for k in i:
             # print(k)
             node = Node()
+            # print(k.keys())
             game1.add_node(node, k)
         
         c_puct = calculate_max_match(k["hand_cards"], k["public_cards"])

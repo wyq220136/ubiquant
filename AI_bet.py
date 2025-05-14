@@ -5,6 +5,13 @@
 import random
 import time
 
+def rl_decide(action_name, table_info):
+    decision = {}
+    decision[action_name] = 1
+    decision["amount"] =table_info['RoomSetting']['BB']
+    
+    return decision
+
 
 def ai(table_info,hand_cards):
     # 

@@ -57,6 +57,10 @@ class PokerStateEncoder:
         }
         
         self.nickDict = {}
+        
+        self.info_storage = info_storage()
+        
+        self.reward_wrapper = rewardwrapper()
 
 
     def load_all_nick(self, data):
@@ -335,6 +339,7 @@ class PokerSACAgent:
         critic1_loss = torch.mean(F.mse_loss(current_q1, target_q))
         critic2_loss = torch.mean(F.mse_loss(current_q2, target_q))
         
+        
         self.critic_1_optimizer.zero_grad()
         critic1_loss.backward()
         self.critic_1_optimizer.step()
@@ -376,21 +381,65 @@ class rewardwrapper:
     def __init__(self):
         self.giveup_num = 0
         self.delta_bet = 0
+        self.is_act = False
+        self.win_reward = 0
+        
         
     def get_reward(self, instance):
-        if instance["Type"] == 5:
-            self.giveup_num += 1
+        if self.is_act:
+            if instance["Type"] == 5:
+                self.giveup_num += 1
+            
+            else:
+                self.delta_bet += instance["Bet"]
         
-        else:
-            self.delta_bet += instance["Bet"]
         
     def refresh(self):
         self.giveup_num = 0
         self.delta_bet = 0
-        
+        self.win_reward = 0
+        self.is_act = True
+    
     
     def calculate_reward(self):
-        return 0.01*self.delta_bet+0.8*self.giveup_num
+        self.is_act = False
+        return 0.01*self.delta_bet+0.8*self.giveup_num + self.win_reward
     
     
+    # win_bet有正有负
+    def is_win(self, res, win_bet):
+        if res:
+            self.win_reward = win_bet
         
+        else:
+            self.win_reward = win_bet
+    
+    
+class info_storage:
+    def __init__(self):
+        self.state = None
+    
+    def update_state(self, state):
+        self.state = state
+        
+    def update_action(self, action):
+        self.action = action
+    
+    def update_reward(self, reward):
+        self.reward = reward
+        
+    def isdone(self):
+        self.dones = 1
+        
+    def update_nextstate(self, nextstate):
+        self.nextstate = nextstate
+        
+    def report(self):
+        return self.state, self.nextstate, self.action, self.reward, self.dones
+      
+    def refresh(self):
+        self.dones = 0
+
+# class judge_winner:
+#     def __init__(self):
+#         self.is_win = False

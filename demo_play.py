@@ -16,14 +16,14 @@ import os
 import time
 import traceback
 import sys
-from AI_bet import ai
+from AI_bet import ai, rl_decide
 from atexit import register
 import socketio
 from typing import Dict, List, Union
 import random
 
 from detect import all_room_info
-from opposetbuild import PokerSACAgent
+from opposetbuild import PokerSACAgent, rewardwrapper
 #如果在本地跑的，有问题额外 pip install websocket-client
 URL = "http://54.222.134.57:30003"
 BASE_DIR = ""
@@ -33,6 +33,7 @@ PATH = os.path.join(BASE_DIR, "client_log")#生成的脚本日志
 # 创建场势整合器，决策器和编码器
 all_info = all_room_info()
 NickAgent = PokerSACAgent(memo_capacity=100000, alpha=0.0001, beta=0.0001, gamma=0.99, tau=0.001, batch_size=64)
+sac_wrapper = rewardwrapper()
 
 if not os.path.exists(PATH):
     os.makedirs(PATH)
@@ -140,6 +141,7 @@ class Socker:
                 all_info.load_room_static(rid, data["GameStatus"]["SBCur"], data["GameStatus"]["BBCur"], data["GameStatus"]["DealerCur"], data['GamePlayer']["NickName"], data["TableStatus"]["User"]["HandChips"])
                 # print(type(data["GameStatus"]["LastAction"]), type(data['GamePlayer']))
                 all_info.update_room(rid, data["GameStatus"]["LastAction"]["LastAction"], data["GameStatus"]["Round"], data["TableStatus"]["User"]["HandChips"], data["TableStatus"]["TableCard"], data["TableStatus"]["User"]["TotalBet"])
+                
                 # self.player.set_joined_rooms(rid, AttrEnum.table_info, data)
                 # print(f'{self.current_username} {rid} |Room| ', event, data)
                 return
@@ -148,6 +150,7 @@ class Socker:
                 #如果需要牌桌结算信息，读取这个信息
                 # Total_info.keep(data["Result"]["Winner"])
                 all_info.set_room_winnner(rid, data["Result"]["Winner"])
+                all_info.room_manage[rid].state_encoder.info_storage.isdone()
                 print(f'{self.current_username} {rid} |Room| ', event, data)
                 return
 
@@ -161,13 +164,28 @@ class Socker:
                     time.sleep(0.5)
                     # print(f'{self.current_username} {rid} PLAY_ACTION  ', event, data)
                     table_info=self.player.get_joined_room_attr(rid, AttrEnum.table_info)#此方式调用最新收到的牌桌情况，需要历史信息时，可以改装对应函数，把他变为list之类的
-                    # print(f'{self.current_username} {rid}  PLAY_ACTION  ', event, table_info)
                     hand_cards=self.player.get_joined_room_attr(rid, AttrEnum.cards)
                     # 这里是给到的一个demo ai示例 调用AI_bet.py中的ai函数即可
                     # print(table_info, hand_cards)
                     state_vector = all_info[rid].report_rl(table_info["GameStatus"]["LastAction"]["LastAction"], table_info["GameStatus"]["Round"], table_info["TableStatus"]["TableCard"])
                     action_name, action_onehot = NickAgent.select_action(state_vector)
-                    decision = ai(table_info, hand_cards['Cards'][0]['card'])
+                    if all_info.room_manage[rid].state_encoder.info_storage.state:
+                        all_info.room_manage[rid].state_encoder.info_storage.update_next_state(state_vector)
+                        reward = all_info.room_manage[rid].state_encoder.reward_wrapper.calculate_reward()
+                        all_info.room_manage[rid].state_encoder.info_storage.update_reward(reward)
+                    
+                    state, next_state, action, reward, dones = all_info[rid].state_encoder.info_storage.report()
+                    NickAgent.memorize(state, action, next_state, reward, dones)
+                    all_info.room_manage[rid].state_encoder.info_storage.refresh()          
+
+                    all_info.room_manage[rid].state_encoder.reward_wrapper.refresh()
+                    all_info.room_manage[rid].state_encoder.info_storage.update_state(state_vector)
+                    all_info.room_manage[rid].state_encoder.info_storage.update_action(action_onehot)
+                    
+                    
+                    decision = rl_decide(action_name, table_info)
+                    
+                    # decision = ai(table_info, hand_cards['Cards'][0]['card'])
                     for k, v in decision.items():
                         BetAction = {'Bet': 0, 'SeatId': table_info['GameStatus']['NowAction']['SeatId'], 'Type': 5}
                         match k:

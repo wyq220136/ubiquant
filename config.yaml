@@ -1,10 +1,10 @@
 join_rooms:
 - pin: qwe
-  rid: iQvRjLPS
+  rid: INM8bWXQ
 - pin: qwe
-  rid: XeSi2Rpq
+  rid: Zef7GmAz
 - pin: qwe
-  rid: 9M1t7bXH
+  rid: XgOUo2n6
 test_users:
 - password: tmppassword
   username: p_13304936695
