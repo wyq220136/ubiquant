@@ -21,8 +21,9 @@ from atexit import register
 import socketio
 from typing import Dict, List, Union
 import random
-
-from detect import all_room_info
+from cfrp import cfrp
+from MCTS import * # 这样import可能有问题
+from detect import all_room_info, player_info
 from opposetbuild import PokerSACAgent, rewardwrapper
 #如果在本地跑的，有问题额外 pip install websocket-client
 URL = "http://54.222.134.57:30003"
@@ -342,6 +343,7 @@ class Player:
     '''
     启动socet的前提是用户进入了房间
     '''
+    
 
     def __init__(self, player_username: str) -> None:
         self.player_username = player_username

@@ -5,6 +5,7 @@ import argparse
 import json
 import os
 from log_processor import RoundInfoManager
+from opposetbuild import OpponentAnalysis
 # 通过牌面好坏的对照表计算惩罚率
 card_sequence = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"]
 
@@ -37,6 +38,12 @@ class Node:
         self.act_his = batch["history_action"]
         self.bet_his = batch["bet_history"]
         self.hand_chips = batch["hand_chips"]
+        self.totalbet = batch["totalbet"]
+        self.player = batch["player"]
+        self.location = batch["location"]
+        self.oppo_totalbet = batch["oppo_totalbet"]
+        self.aggression = batch["aggression"]
+        self.oppo_fold = batch["oppo_fold"]
     
     def calculate_value(self, baseline:float, c_puct:float):
         # 仅适用于叶子节点，baseline是基础奖罚值，c_puct是根据手牌获得的倍率
@@ -79,6 +86,7 @@ class node_list:
         self.node_now = node
         self.node_counter += 1
         # print(f"Node number is {self.node_counter}")
+        # print(f"Node number is {self.node_counter}")
     
     def backbone(self, c_puct:float):
         # 从叶节点开始计算
@@ -101,7 +109,13 @@ class node_list:
             "history_action": [],
             "bet_history": [],
             "hand_chips": [],
-            "value": []
+            "value": [],
+            "totalbet": [],
+            "player":  [],
+            "location": [],
+            "oppo_totalbet": [],
+            "aggression": [],
+            "oppo_fold": []
         }
         
         current_node = self.root.children
@@ -115,6 +129,13 @@ class node_list:
             # print(result["bet_history"])
             result["hand_chips"].append(current_node.hand_chips)
             result["value"].append(current_node.value)
+            result["totalbet"].append(current_node.totalbet)
+            result["player"].append(current_node.player)
+            result["location"].append(current_node.location)
+            result["oppo_totalbet"].append(current_node.oppo_totalbet)
+            result["aggression"].append(current_node.aggression)
+            result["oppo_fold"].append(current_node.oppo_fold)
+
             current_node = current_node.children
         return result
 
@@ -130,7 +151,13 @@ class LabelScorer:
             # 每一个元素也是一个列表，记录前两回合玩家押注情况
             "bet_history":[],
             # 我的筹码数量
-            "hand_chips":[]
+            "hand_chips":[],
+            "totalbet": [],
+            "player": [],
+            "location": [],
+            "oppo_totalbet": [],
+            "aggression": [],
+            "oppo_fold": []
         }
         
         self.path = "data.csv"
@@ -168,7 +195,14 @@ class LabelScorer:
                 f"Action: {self.result['action'][i]}, "
                 f"History Actions: [{formatted_actions}], "
                 f"Bet History: [{formatted_bets}], "
-                f"Chips: {self.result['hand_chips'][i]}"
+                f"Chips: {self.result['hand_chips'][i]}, "
+                f"Totalbet: {self.result['totalbet'][i]}, "
+                f"Player: {self.result['player'][i]}, "
+                f"Location: {self.result['location'][i]}, "
+                f"Oppo_totalbet: {self.result['oppo_totalbet'][i]}, "
+                f"Aggression: {self.result['aggression'][i]}, "
+                f"oppo_fold: {self.result['oppo_fold'][i]}"
+
             )
             # print(type(desc))
             prompts.append(desc)
@@ -178,8 +212,41 @@ class LabelScorer:
             df0 = pd.concat([df1, df], ignore_index=True)
             df0.to_csv("data.csv", index=False)
         else:
-            df.to_csv("data.csv", index=False)
- 
+            df.to_csv("data.csv")
+
+    def report_prompts(self):
+        prompts = []
+        for i in range(len(self.result["stage"])):
+            # 格式化历史动作
+            formatted_actions = " | ".join(
+                [",".join(round_actions) for round_actions in self.result["history_action"][i]]
+            )
+            # print(self.result["bet_history"])
+            # 格式化押注记录
+            formatted_bets = " | ".join(
+                [f"Round{idx+1}:"+",".join(map(str,bets)) 
+                 for idx, bets in enumerate(self.result["bet_history"][i])]
+            )
+            # 构建描述字符串
+            desc = (
+                f"Stage: {self.result['stage'][i].lower()}, "
+                f"Private Cards: {', '.join(str(card) for card in self.result['private_cards'][i]) if self.result['private_cards'][i] else 'None'}, "
+                f"Public Cards: {', '.join(str(card) for card in self.result['public_cards'][i]) if self.result['public_cards'][i] else 'None'}, "
+                f"Action: {self.result['action'][i]}, "
+                f"History Actions: [{formatted_actions}], "
+                f"Bet History: [{formatted_bets}], "
+                f"Chips: {self.result['hand_chips'][i]}, "
+                f"Totalbet: {self.result['totalbet'][i]}, "
+                f"Player: {self.result['player'][i]}, "
+                f"Location: {self.result['location'][i]}, "
+                f"Oppo_totalbet: {self.result['oppo_totalbet'][i]}, "
+                f"Aggression: {self.result['aggression'][i]}, "
+                f"oppo_fold: {self.result['oppo_fold'][i]}"
+
+            )
+            # print(type(desc))
+            prompts.append(desc)
+        return prompts
 
 # 判断是否是顺子
 def is_straight(ranks):
@@ -320,6 +387,7 @@ def calculate_max_match(hand_cards_raw:list, public_cards_raw:list)->float:
         best_match, _ = best_hand(public_cards.copy(), hand_cards.copy())
         public_res = win_rate_heads_up[best_match]
         # print(hand_res, public_res)
+        # print(hand_res, public_res)
     return 0.5*hand_res+0.5*public_res
     
     
@@ -327,8 +395,8 @@ def arg_parse():
     parse = argparse.ArgumentParser()
     parse.add_argument("--path", type=str, default="log", help="the path of log")
     dir_lis = os.listdir("log")
-    file_lis = os.listdir("log/"+dir_lis[0])
-    parse.add_argument("--name", type=str, default=dir_lis[0]+"/"+file_lis[-1], help="the name of log_file")
+    file_lis = os.listdir("log/"+dir_lis[1])
+    parse.add_argument("--name", type=str, default=dir_lis[0]+"/"+file_lis[0], help="the name of log_file")
     
     parse.add_argument("--nick", type=str, default="p_13304936695", help="the player you want to analyze")
     parse.add_argument("--opponent", type=str, default="p_13304936695_player1", help="the opponent")
@@ -345,8 +413,11 @@ def extract_player_info(data, player):
         # print(game)
         this_game_batches = []
         basic_info = game.get("basic_info", {})
+        # print("basic", basic_info)
         dynamic_info = game.get("dynamic_info", {})
+        # print("dynamic", dynamic_info)
         round_history = dynamic_info.get("round_history", [])
+        # print("round", round_history)
 
         # 初始化玩家和对手的信息
         player_info = None
@@ -354,7 +425,9 @@ def extract_player_info(data, player):
 
         # 提取玩家和对手的基本信息
         for seat in basic_info.get("seat_info", []):
+            # print(seat['seatid'])
             if seat.get("usrname") == player:
+                # print("find player")
                 player_info = seat["seatid"]
                 init_hand_chips = seat["hand_chips"]
                 break
@@ -364,38 +437,44 @@ def extract_player_info(data, player):
         batch = {}
         p_flag = False
         win_flag = True
-        # print(len(round_history))
-        
-        # 游戏是否继续
-        # is_continue = True
+        totalbet = 0
+        oppo = {}
+        hand_cards = []
+
         for round in round_history:
             # print(round)
-            # invalid_num = len(round["table_cards"])
-            # cards_num = invalid_num
-            
-            # 判断一个回合下来我有没有死
-            invalid_num = round["table_cards"].count(-1)
-            cards_num = 5 - invalid_num
-            
+            cards_num = 5-round["table_cards"].count(-1)
+
             if cards_num == 0:
                 if this_game_batches != []:
                     for batch in reversed(this_game_batches):
-                            if "hand_cards" not in batch:
-                                this_game_batches.pop()
-                            else:
-                                break
+                        if "hand_cards" not in batch:
+                            this_game_batches.pop()
+                        else:
+                            break
                     batches.append(this_game_batches)
                     this_game_batches = []
+            totalbet += round["bet"]
+            # print(cards_num)
+            # print(player_info, round["player"])
+            # print("="*20)
 
             if round["player"] != player_info:
+               
                 act = ""
                 if round["type"] == 2:
                     act = "bet"
                 if round["type"] == 5:
                     act = "fold"
-                
+
+                if round["player"] not in oppo:
+                    new_oppo = OpponentAnalysis(round["player"])
+                    oppo[round["player"]] = new_oppo
+
+                oppo[round["player"]].calculate_new_aggression(round["type"])
+
                 p_flag, isdone = processor.get_extern_info(cards_num, act, round["bet"])
-                    
+                # print(p_flag, isdone)
                 if p_flag:
                     p_flag = False
                     
@@ -404,20 +483,44 @@ def extract_player_info(data, player):
                     else:
                         batch["winner"] = -1
                         
+                    if basic_info['blind']['big_blind']['seatid'] == round["player"]:
+                        batch["location"] = 1
+                    elif basic_info['blind']['small_blind']['seatid'] == round["player"]:
+                        batch["location"] = 2
+                    elif basic_info['dealer_info']['seatid'] == round["player"]:
+                        batch["location"] = 3
+                    else:
+                        batch["location"] = 4
+                        
                     batch["history_action"], batch["bet_history"], batch["stage"] = processor.report_history()
+                    batch["totalbet"] = totalbet
+                    # print(totalbet)
+                    batch["player"] = round["player"]
+                    oppo_repo = oppo[round["player"]].report()
+                    batch["oppo_totalbet"] = oppo_repo["total_bet"]
+                    batch["aggression"] = oppo_repo["aggression"]
+                    batch["oppo_fold"] = oppo_repo["fold"]
+
                     this_game_batches.append(batch)
-                    # print(batch)
+                    # if "hand_cards" not in batch.keys():
+                        # print("no hand_cards")
                     batch = {}
                 
                     if isdone:
                         batches.append(this_game_batches)
+                        # print(this_game_batches)
                         this_game_batches = []
+                        totalbet = 0
                     
             else:
-                try:
-                    batch["hand_chips"] = transfer_cards(round["player_chips"])
-                except:
-                    batch["hand_chips"] = round["player_chips"]
+                # print("="*10)
+                act = ""
+                if round["type"] == 2:
+                    act = "bet"
+                if round["type"] == 5:
+                    act = "fold"
+
+                batch["hand_chips"] = round["player_chips"]
                 if -1 in round["table_cards"]:
                     table_valid = round["table_cards"].remove(-1)
                 else:
@@ -440,6 +543,7 @@ def extract_player_info(data, player):
                         win_flag = True
     return batches
  
+ 
 def load_json_file(file_path):
     data = []
     with open(file_path, "r") as f:
@@ -459,13 +563,47 @@ def load_json_file(file_path):
     return data
     
 def main():
-    args = arg_parse()
-    log_file = args.path + "/" + args.name
-    # print(log_file)
-    data = load_json_file(log_file)
-    # print(data)
-    batches = extract_player_info(data, args.nick)
-    # print(len(batches))
+    # args = arg_parse()
+    # log_file = args.path + "/" + args.name
+    # print(args.nick)
+
+    log_folder = "log"
+    data = []
+    for subdir in os.listdir(log_folder):
+        subdir_path = os.path.join(log_folder, subdir)
+
+        if os.path.isdir(subdir_path):
+            for file in os.listdir(subdir_path):
+                if file.endswith(".json"):
+                    log_file = os.path.join(subdir_path, file)
+                    print(log_file)
+                    data.extend(load_json_file(log_file))
+                    print(len(data))
+
+    for subdir in os.listdir(log_folder):
+        subdir_path = os.path.join(log_folder, subdir)
+        
+        if os.path.isdir(subdir_path):
+            for file in os.listdir(subdir_path):
+                if file.endswith(".json"):
+                    log_file = os.path.join(subdir_path, file)
+                    print(log_file)
+                    
+                    try:
+                        # 尝试解析JSON文件
+                        with open(log_file, 'r') as f:
+                            json.load(f)  # 仅检查格式，不保存数据
+                    except json.JSONDecodeError as e:
+                        print(f"JSON格式错误在文件 {log_file}: {e}")
+                        continue  # 跳过后续处理
+                    except Exception as e:
+                        print(f"读取文件时发生错误 {log_file}: {e}")
+                        continue
+                    data.extend(load_json_file(log_file))
+
+    player = "p_13304936695"
+    batches = extract_player_info(data, player)
+    print("batches", len(batches))
     scorer = LabelScorer()
     for i in batches:
         game1 = node_list()

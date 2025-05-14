@@ -61,213 +61,304 @@ def ai(table_info,hand_cards):
     #     totalbet = state.player[state.currpos].totalbet + state.minbet
     totalbet= table_info['TableStatus']['User']['TotalBet'][id]+minbet
     if num == 2:
-        # 两张牌
-        if (cards[0] // 4) != (cards[1] // 4): # 非对子
-            if max(cards) < 32:
-                # 最大不超过9：若跟注后超过100，放弃。否则跟注
-                if totalbet <= 50:
-                    decision["callbet"] = 1
+
+        point0, point1 = cards[0] // 4, cards[1] // 4
+        max_point = max(point0, point1)
+        min_point = min(point0, point1)
+        is_pair = (point0 == point1)
+        is_suited = (cards[0] % 4) == (cards[1] % 4)
+        gap = abs(point0 - point1)
+        
+        if is_pair:
+            # 对子逻辑
+            if max_point >= 12:  # 对A（假设点数12为A）
+                if totalbet < 300:
+                    decision = add_bet(table_info, 300)
                 else:
-                    decision["giveup"] = 1
-            if max(cards) < 44:
-                # 最大为10-Q：若跟注后超过150，放弃。否则跟注
+                    decision["callbet"] = 1
+            elif max_point >= 10:  # 对K、对Q
+                if totalbet < 200:
+                    decision = add_bet(table_info, 200)
+                else:
+                    decision["callbet"] = 1
+            else:  # 中小对子
                 if totalbet <= 100:
                     decision["callbet"] = 1
                 else:
                     decision["giveup"] = 1
-            else:
-                # 最大为K-A： 若跟注后超过200，放弃。否则跟注
+        else:
+            # 非对子逻辑
+            is_high_card = (max_point >= 10)  # J及以上
+            is_ace_high = (max_point == 12) and (min_point >= 8)  # A带T+
+            if is_suited and is_high_card:
+                # 同花高牌激进处理
+                if totalbet <= 200:
+                    decision["callbet"] = 1
+                else:
+                    decision["giveup"] = 1
+            elif is_ace_high or (gap == 1 and max_point >= 9):
+                # 连张或A带高牌
                 if totalbet <= 150:
                     decision["callbet"] = 1
                 else:
                     decision["giveup"] = 1
-        else:
-            # 对子
-            if max(cards) < 44:
-                # 对子，不超过Q：跟注。若跟注后低于200，加注到200以上
-                if totalbet < 100:
-                    decision = add_bet(table_info, 105)
-                else:
-                    decision["callbet"] = 1
             else:
-                # 双A、双K：跟注。若跟注后低于300，加注到300
-                if totalbet < 150:
-                    decision = add_bet(table_info, 155)
-                else:
-                    decision["callbet"] = 1
+                # 其他情况弃牌
+                decision["giveup"] = 1
 
-    elif num == 5: # 五张牌
+    elif num == 5:
+        current_bet = BetLimit[1]
+        decision = {"callbet": 0, "raisebet": 0, "giveup": 0, "allin": 0, "check": 0}
+        # 基础筹码检查函数
+        def check_chips(required):
+            if required > handchips:
+                decision["allin"] = 1
+                return handchips
+            return required
+
         if sum < 4:
-            # 直接放弃
-            decision["giveup"] = 1
-        elif sum >= 4 and sum < 10:
-            # 若跟注后超过150，放弃。否则跟注
-            # 若已下的注额大于200, 且本次需跟注额不大于50， 则跟注
-            if totalbet < 150:
-                decision["callbet"] = 1
-            elif totalbet > 200 and delta < 50:
-                decision["callbet"] = 1
-            elif id == small_b or id == big_b:
-                decision["callbet"] = 1
-                decision["giveup"] = 0
-                decision["raisebet"] = 0
+            # 极低牌力时优先利用check选项
+            if delta == 0 and BetLimit[0] == 0:
+                decision["check"] = 1
             else:
                 decision["giveup"] = 1
 
-        elif sum >= 10 and sum < 20:
-            # 跟注。若跟注后低于300，加注到300
-            if totalbet < 200:
-                decision = add_bet(table_info, 205)
-            else:
-                decision["callbet"] = 1
-        elif sum >= 20 and sum < 50:
-            # 跟注。若跟注后低于600，加注到600
-            if totalbet < 300:
-                decision = add_bet(table_info, 305)
-                if decision['amount'] > handchips:
-                    decision.allin = 1
-            else:
-                decision["callbet"] = 1
+        elif 4 <= sum < 10:
+            # 复合决策条件：筹码深度+位置优势
+            blind_condition = (id == small_b or id == big_b) and delta <= big_b * 2
+            if totalbet < 150 or delta <= 50 or blind_condition:
                 if delta > handchips:
-                    decision.allin = 1 # 这里的含义是，牌还不错但钱不多的时候，可以一搏
-        else:
-            decision["callbet"] = 1
-            if delta > handchips:
-                decision.allin = 1
-    
-        if BetLimit[0] == 0:
-            decision['check'] = 1
-            decision["callbet"] = 0
-            decision["giveup"] = 0
-            decision["raisebet"] = 0
-
-    elif num == 6: # 六张牌
-        if sum < 2:
-            # 直接放弃
-            decision["giveup"] = 1
-        elif sum >= 2 and sum < 8:
-            # 若跟注后超过300，放弃。否则跟注
-            # 若已下的注额大于200, 且本次需跟注额不大于50， 则跟注
-            if totalbet < 200:
-                    decision["callbet"] = 1
-            elif totalbet > 200 and delta < 40:
-                decision["callbet"] = 1
-            else:
-                decision["giveup"] = 1
-        elif sum >= 8 and sum < 20:
-            # 跟注。若跟注后低于300，加注到300
-            if totalbet < 300:
-                decision = add_bet(table_info, 305)
-                if decision['amount'] > handchips:
-                    decision.allin = 1
-            else:
-                decision["callbet"] = 1
-                if delta > handchips:
-                    decision.allin = 1
-
-        elif sum >= 20 and sum < 40:
-            # 跟注。若跟注后低于600，加注到600
-            if totalbet < 400:
-                if id == dealer:
-                    decision = add_bet(table_info, 605)
+                    decision["allin"] = 1
                 else:
-                    decision = add_bet(table_info, 405)
-                if decision['amount'] > handchips:
-                    decision.allin = 1
+                    decision["callbet"] = 1
+                    # 特殊场景：当处于有利位置且筹码较深时小额加注
+                    if id == dealer and handchips > 1000 and delta == 0:
+                        decision["raisebet"] = 1
+                        decision["callbet"] = 0
+                        decision["amount"] = check_chips(100)
             else:
-                decision["callbet"] = 1
-                if delta > handchips:
-                    decision.allin = 1
-        else:
-            # allin
-            decision.allin = 1
+                decision["giveup"] = 1
 
-        if BetLimit[0] == 0:
-            decision['check'] = 1
-            decision["callbet"] = 0
+        elif 10 <= sum < 20:
+            # 中等牌力采用动态加注策略
+            if totalbet < 200:
+                raise_amount = max(2.5*current_bet, 205)  # 动态计算加注额度
+                actual_raise = check_chips(raise_amount)
+                if actual_raise > current_bet:
+                    decision["raisebet"] = 1
+                    decision["amount"] = actual_raise
+                    if actual_raise == handchips:
+                        decision["allin"] = 1
+            else:
+                if delta > handchips:
+                    decision["allin"] = 1
+                else:
+                    decision["callbet"] = 1
+
+        elif 20 <= sum < 50:
+            # 强牌采用激进加注策略
+            if totalbet < 300:
+                raise_amount = max(3*current_bet, 305)
+                actual_raise = check_chips(raise_amount)
+                decision["raisebet"] = 1
+                decision["amount"] = actual_raise
+                if actual_raise == handchips:
+                    decision["allin"] = 1
+            else:
+                if delta > handchips:
+                    decision["allin"] = 1
+                else:
+                    decision["callbet"] = 1
+
+        else:  # sum >=50
+            # 超强牌直接全押或最大化加注
+            if delta > 0:
+                decision["raisebet"] = 1
+                decision["amount"] = check_chips(handchips)
+                if decision["amount"] == handchips:
+                    decision["allin"] = 1
+            else:
+                decision["raisebet"] = 1
+                decision["amount"] = check_chips(max(current_bet*4, 500))
+
+        # Check逻辑优化（仅在无代价时且未做其他决策时触发）
+        if BetLimit[0] == 0 and delta == 0:
+            if not any([decision["callbet"], decision["raisebet"], decision["giveup"], decision["allin"]]):
+                decision["check"] = 1
+        
+        # 冲突解决优先级：allin > raisebet > callbet > check > giveup
+        if decision["allin"]:
+            decision.update({"callbet":0, "raisebet":0, "check":0, "giveup":0})
+        elif decision["raisebet"]:
+            decision.update({"callbet":0, "check":0, "giveup":0})
+        elif decision["callbet"]:
+            decision.update({"check":0, "giveup":0})
+        elif decision["check"]:
             decision["giveup"] = 0
+        
+        # 强制弃牌保护（当需要跟注金额超过心理阈值时）
+        if delta > 0 and not any([decision["callbet"], decision["raisebet"], decision["allin"], decision["check"]]):
+            decision["giveup"] = 1
+
+    elif num == 6:
+        decision = {"giveup": 0, "callbet": 0, "raisebet": 0, "allin": 0, "check": 0}
+
+        # 基础决策逻辑
+        if sum < 2:
+            decision["giveup"] = 1
+        elif 2 <= sum < 8:
+            if totalbet <= 200:
+                decision["callbet"] = 1
+            else:
+                decision["callbet"] = 1 if delta <= min(40, handchips) else 0
+                decision["giveup"] = 1 if delta > min(40, handchips) else 0
+        elif 8 <= sum < 20:
+            if totalbet < 300:
+                needed = 305 - totalbet
+                if needed <= handchips:
+                    decision["raisebet"] = 1
+                    decision["amount"] = 305
+                else:
+                    decision["allin"] = 1
+            else:
+                if delta <= handchips:
+                    decision["callbet"] = 1
+                else:
+                    decision["allin"] = 1
+        elif 20 <= sum < 40:
+            if totalbet < 400:
+                target = 605 if id == dealer else 405
+                needed = target - totalbet
+                if needed <= handchips:
+                    decision["raisebet"] = 1
+                    decision["amount"] = target
+                else:
+                    decision["allin"] = 1
+            else:
+                if delta <= handchips:
+                    decision["callbet"] = 1
+                else:
+                    decision["allin"] = 1
+        else:
+            decision["allin"] = 1
+
+        # 强制覆盖逻辑：当允许check时（无需跟注）
+        if BetLimit[0] == 0 and delta == 0:
+            decision = {"giveup": 0, "callbet": 0, "raisebet": 0, "allin": 0, "check": 1}
+        
+        # 互斥逻辑处理
+        if decision["allin"]:
+            decision["giveup"] = 0
+            decision["callbet"] = 0
             decision["raisebet"] = 0
-            decision.allin = 1
+            decision["check"] = 0
+
+        # 筹码不足保护
+        if decision.get("raisebet") and decision["amount"] > totalbet + handchips:
+            decision["raisebet"] = 0
+            decision["allin"] = 1
+
+        # 跟注保护
+        if decision["callbet"] and delta > handchips:
+            decision["callbet"] = 0
+            decision["allin"] = 1
 
     elif num == 7:
-        # 七张牌
+        decision = {'allin': 0, 'callbet': 0, 'raisebet': 0, 'giveup': 0, 'check': 0, 'amount': 0}
+        
         if level == 7:
-            # allin
-            decision.allin = 1
+            decision['allin'] = 1
+            
         elif level == 6:
-            # 跟注，若跟注后低于600，加注到600
+            # 跟注，若加注后筹码不足则全下
             if totalbet < 400:
-                if id == dealer:
-                    decision = add_bet(table_info, 605)
-                else:
-                    decision = add_bet(table_info, 405)
+                # 庄家加注到605，其他玩家到405
+                raise_amount = 605 if id == dealer else 405
+                decision = add_bet(table_info, raise_amount)
                 if decision['amount'] > handchips:
-                    decision.allin = 1
+                    decision['allin'] = 1
+                    decision['raisebet'] = 0
+                    decision['amount'] = handchips
             else:
-                decision["callbet"] = 1
+                # 跟注时检查筹码是否足够
                 if delta > handchips:
-                    decision.allin = 1
+                    decision['allin'] = 1
+                    decision['callbet'] = 0
+                else:
+                    decision['callbet'] = 1
 
         elif level == 5:
-            # 跟注，若跟注后低于500，加注到500
+            # 加注到405或全下
             if totalbet < 400:
                 decision = add_bet(table_info, 405)
                 if decision['amount'] > handchips:
-                    decision.allin = 1
+                    decision['allin'] = 1
+                    decision['amount'] = handchips
             else:
-                decision["callbet"] = 1
                 if delta > handchips:
-                    decision.allin = 1
+                    decision['allin'] = 1
+                else:
+                    decision['callbet'] = 1
 
         elif level == 4:
-            # 跟注，若跟注后低于400，加注到400
+            # 加注到405时处理筹码不足
             if totalbet < 400:
                 decision = add_bet(table_info, 405)
+                if decision['amount'] > handchips:
+                    decision['allin'] = 1
+                    decision['amount'] = handchips
             else:
-                decision["callbet"] = 1
+                decision['callbet'] = 1
 
         elif level == 3:
-            # 若跟注后超过500，放弃。否则跟注。若跟注后低于300，加注到300
-            # 若已下的注额大于200, 且本次需跟注额不大于50， 则跟注
-            if totalbet < 200:
-                decision = add_bet(table_info, 205)
+            if totalbet > 500:
+                decision['giveup'] = 1
             elif totalbet < 300:
-                decision["callbet"] = 1
-            elif totalbet > 200 and delta < 50:
-                decision["callbet"] = 1
+                decision = add_bet(table_info, 300)
+                if decision['amount'] > handchips:
+                    decision['allin'] = 1
+                    decision['amount'] = handchips
             else:
-                decision["giveup"] = 1
-        elif level == 2:
-            if cards.count(0) == 2 or cards.count(12) == 2:
-                # 双A双K 若跟注后超过200，放弃。否则跟注
-                # 若已下的注额大于200, 且本次需跟注额不大于50， 则跟注
-                if totalbet < 200:
-                    decision["callbet"] = 1
-                elif totalbet > 200 and delta < 50:
-                    decision["callbet"] = 1
+                if delta > handchips:
+                    decision['allin'] = 1
                 else:
-                    decision["giveup"] = 1
-            else:
-                # 不超过双Q 若跟注后超过200，放弃。否则跟注
-                if totalbet > 200:
-                    decision["giveup"] = 1
-                else:
-                    decision["callbet"] = 1
-        elif level == 1:
-            decision["giveup"] = 1
-        else:
-            print('the num of cards is {}'.format(num))
-            assert(0)
+                    decision['callbet'] = 1
 
-    if decision["callbet"] == 1 and BetLimit[0] == 0:
-        t = random.randint(0,2)
-        if t == 0:
-            decision["callbet"] = 0
-            decision["raisebet"] = 1
-            decision.allin = 0
-            decision['check'] = 0
-            decision["callbet"] = 0
-            decision["amount"] =table_info['RoomSetting']['BB']
+        elif level == 2:
+            # 修正手牌判断逻辑（假设前两张是手牌）
+            hand = cards[:2]
+            aces = hand.count(0) >= 2
+            kings = hand.count(12) >= 2
+            
+            if aces or kings:
+                if totalbet <= 200:
+                    decision['callbet'] = 1
+                elif delta <= 50:
+                    decision['callbet'] = 1
+                else:
+                    decision['giveup'] = 1
+            else:
+                if totalbet <= 200:
+                    decision['callbet'] = 1
+                else:
+                    decision['giveup'] = 1
+
+        elif level == 1:
+            decision['giveup'] = 1
+
+        else:
+            print(f'Invalid level {level} with {num} cards')
+            assert 0
+
+        # BetLimit处理（需要确保不覆盖allin状态）
+        if decision['callbet'] and BetLimit[0] == 0 and decision['allin'] == 0:
+            if random.randint(0, 2) == 0:
+                min_raise = max(table_info['BB'], delta*2)
+                decision.update({
+                    'callbet': 0,
+                    'raisebet': 1,
+                    'amount': min_raise
+                })
 
     return decision
 

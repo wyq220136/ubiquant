@@ -4,6 +4,7 @@ import torch.optim as optim
 import numpy as np
 import torch.nn.functional as F
 # from collections import defaultdict
+# from collections import defaultdict
 
 action_config = ["giveup", "allin", "check", "callbet", "raisebet"]
 
@@ -202,6 +203,7 @@ class ActorNetwork(nn.Module):
 
     def forward(self, state):
         logits = self.net(state)
+        logits = self.net(state)
         return F.softmax(logits, dim=-1)  # 输出动作概率分布
 
     def sample_action(self, state):
@@ -222,6 +224,7 @@ class CriticNetwork(nn.Module):
         self.optimizer = optim.Adam(self.parameters(), lr)
         
     def forward(self, state):
+        x = F.relu(self.fc1(state))
         x = F.relu(self.fc1(state))
         x = F.relu(self.fc2(x))
         q = self.q(x)
@@ -347,6 +350,10 @@ class PokerSACAgent:
         
         self.critic_2_optimizer.zero_grad()
         critic2_loss.backward()
+        
+        
+        self.critic_2_optimizer.zero_grad()
+        critic2_loss.backward()
         self.critic_2_optimizer.step()
                 
         # 更新Actor
@@ -364,8 +371,11 @@ class PokerSACAgent:
         # 更新温度参数
         entropy = -torch.sum(probs * log_probs, dim=-1)
         alpha_loss = -(self.log_alpha * (entropy.detach() - self.target_entropy)).mean()
+        entropy = -torch.sum(probs * log_probs, dim=-1)
+        alpha_loss = -(self.log_alpha * (entropy.detach() - self.target_entropy)).mean()
         
         self.alpha_optim.zero_grad()
+        alpha_loss.backward()
         alpha_loss.backward()
         self.alpha_optim.step()
         
