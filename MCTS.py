@@ -359,7 +359,7 @@ def arg_parse():
     parse.add_argument("--path", type=str, default="log", help="the path of log")
     dir_lis = os.listdir("log")
     file_lis = os.listdir("log/"+dir_lis[1])
-    parse.add_argument("--name", type=str, default=dir_lis[1]+"/"+file_lis[-1], help="the name of log_file")
+    parse.add_argument("--name", type=str, default=dir_lis[0]+"/"+file_lis[0], help="the name of log_file")
     
     parse.add_argument("--nick", type=str, default="p_13304936695", help="the player you want to analyze")
     parse.add_argument("--opponent", type=str, default="p_13304936695_player1", help="the opponent")
@@ -386,6 +386,7 @@ def extract_player_info(data, player):
         for seat in basic_info.get("seat_info", []):
             # print(seat['seatid'])
             if seat.get("usrname") == player:
+                # print("find player")
                 player_info = seat["seatid"]
                 init_hand_chips = seat["hand_chips"]
                 break
@@ -404,6 +405,9 @@ def extract_player_info(data, player):
             cards_num = invalid_num
             totalbet += round["bet"]
             # print(cards_num)
+            # print(player_info, round["player"])
+            # print("="*20)
+
             if round["player"] != player_info:
                
                 act = None
@@ -447,17 +451,20 @@ def extract_player_info(data, player):
                     batch["oppo_fold"] = oppo_repo["fold"]
 
                     this_game_batches.append(batch)
+                    if "hand_cards" not in batch.keys():
+                        print("no hand_cards")
                     batch = {}
                     
                     if isdone:
                         processor.update_round(round["player_chips"])
                         # print(this_game_batches)
                         batches.append(this_game_batches)
+                        # print(this_game_batches)
                         this_game_batches = []
                         totalbet = 0
                     
             else:
-                # print(2)
+                print("="*10)
                 batch["hand_chips"] = round["player_chips"]
                 if -1 in round["table_cards"]:
                     table_valid = round["table_cards"].remove(-1)
@@ -466,6 +473,7 @@ def extract_player_info(data, player):
                 batch["public_cards"] = table_valid
                 batch["action"] = act
                 batch["hand_cards"] = round["hand_cards"]
+                # print(batch)
                 # 判断一局的胜负
                 if processor.stage == "RIVER":
                     if round["player_chips"] < player_chips_now:
@@ -473,6 +481,7 @@ def extract_player_info(data, player):
                     else:
                         win_flag = True
     return batches
+ 
  
 def load_json_file(file_path):
     data = []
@@ -494,12 +503,47 @@ def load_json_file(file_path):
     return data
     
 def main():
-    args = arg_parse()
-    log_file = args.path + "/" + args.name
-    print(args.nick)
-    data = load_json_file(log_file)
-    batches = extract_player_info(data, args.nick)
-    # print(len(batches))
+    # args = arg_parse()
+    # log_file = args.path + "/" + args.name
+    # print(args.nick)
+
+    log_folder = "log"
+    data = []
+    for subdir in os.listdir(log_folder):
+        subdir_path = os.path.join(log_folder, subdir)
+
+        if os.path.isdir(subdir_path):
+            for file in os.listdir(subdir_path):
+                if file.endswith(".json"):
+                    log_file = os.path.join(subdir_path, file)
+                    print(log_file)
+                    data.extend(load_json_file(log_file))
+                    print(len(data))
+
+    for subdir in os.listdir(log_folder):
+        subdir_path = os.path.join(log_folder, subdir)
+        
+        if os.path.isdir(subdir_path):
+            for file in os.listdir(subdir_path):
+                if file.endswith(".json"):
+                    log_file = os.path.join(subdir_path, file)
+                    print(log_file)
+                    
+                    try:
+                        # 尝试解析JSON文件
+                        with open(log_file, 'r') as f:
+                            json.load(f)  # 仅检查格式，不保存数据
+                    except json.JSONDecodeError as e:
+                        print(f"JSON格式错误在文件 {log_file}: {e}")
+                        continue  # 跳过后续处理
+                    except Exception as e:
+                        print(f"读取文件时发生错误 {log_file}: {e}")
+                        continue
+                    data.extend(load_json_file(log_file))
+
+    player = "p_13304936695"
+    batches = extract_player_info(data, player)
+    print("batches", len(batches))
     scorer = LabelScorer()
     for i in batches:
         game1 = node_list()
@@ -507,7 +551,7 @@ def main():
         if i == []:
             continue
         for k in i:
-            # print(k)
+            print(k)
             node = Node()
             game1.add_node(node, k)
         
