@@ -21,8 +21,9 @@ from atexit import register
 import socketio
 from typing import Dict, List, Union
 import random
-
-from detect import total_info, all_room_info
+from cfrp import cfrp
+from MCTS import * # 这样import可能有问题
+from detect import total_info, all_room_info, player_info
 #如果在本地跑的，有问题额外 pip install websocket-client
 URL = "http://54.222.134.57:30003"
 BASE_DIR = ""
@@ -163,8 +164,14 @@ class Socker:
                     # print(f'{self.current_username} {rid}  PLAY_ACTION  ', event, table_info)
                     hand_cards=self.player.get_joined_room_attr(rid, AttrEnum.cards)
                     # 这里是给到的一个demo ai示例 调用AI_bet.py中的ai函数即可
-                    print(table_info, hand_cards)
-                    decision = ai(table_info, hand_cards['Cards'][0]['card'])
+                    # print(table_info, hand_cards)
+                    threshold = 1 # 多少合适呢？
+                    true_player = all_info.room_manage[rid].basic_info.seat_info[table_info['GameStatus']['NowAction']['SeatId']]
+                    CFRP = cfrp(true_player, table_info['GameStatus']['NowAction']['SeatId'], threshold)
+                    MCT = LabelScorer()
+                    state = MCT.report_prompts()
+                    this_info_sets_regret = CFRP.generate_regret(state)
+                    decision = CFRP.calculate_strategy(this_info_sets_regret)
                     for k, v in decision.items():
                         BetAction = {'Bet': 0, 'SeatId': table_info['GameStatus']['NowAction']['SeatId'], 'Type': 5}
                         match k:
@@ -321,6 +328,7 @@ class Player:
     '''
     启动socet的前提是用户进入了房间
     '''
+    
 
     def __init__(self, player_username: str) -> None:
         self.player_username = player_username

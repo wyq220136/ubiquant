@@ -212,7 +212,40 @@ class LabelScorer:
             df0.to_csv("data.csv")
         else:
             df.to_csv("data.csv")
- 
+
+    def report_prompts(self):
+        prompts = []
+        for i in range(len(self.result["stage"])):
+            # 格式化历史动作
+            formatted_actions = " | ".join(
+                [",".join(round_actions) for round_actions in self.result["history_action"][i]]
+            )
+            # print(self.result["bet_history"])
+            # 格式化押注记录
+            formatted_bets = " | ".join(
+                [f"Round{idx+1}:"+",".join(map(str,bets)) 
+                 for idx, bets in enumerate(self.result["bet_history"][i])]
+            )
+            # 构建描述字符串
+            desc = (
+                f"Stage: {self.result['stage'][i].lower()}, "
+                f"Private Cards: {', '.join(str(card) for card in self.result['private_cards'][i]) if self.result['private_cards'][i] else 'None'}, "
+                f"Public Cards: {', '.join(str(card) for card in self.result['public_cards'][i]) if self.result['public_cards'][i] else 'None'}, "
+                f"Action: {self.result['action'][i]}, "
+                f"History Actions: [{formatted_actions}], "
+                f"Bet History: [{formatted_bets}], "
+                f"Chips: {self.result['hand_chips'][i]}, "
+                f"Totalbet: {self.result['totalbet'][i]}, "
+                f"Player: {self.result['player'][i]}, "
+                f"Location: {self.result['location'][i]}, "
+                f"Oppo_totalbet: {self.result['oppo_totalbet'][i]}, "
+                f"Aggression: {self.result['aggression'][i]}, "
+                f"oppo_fold: {self.result['oppo_fold'][i]}"
+
+            )
+            # print(type(desc))
+            prompts.append(desc)
+        return prompts
 
 # 判断是否是顺子
 def is_straight(ranks):
@@ -374,9 +407,11 @@ def extract_player_info(data, player):
     for game in data:
         this_game_batches = []
         basic_info = game.get("basic_info", {})
-        # print(basic_info)
+        # print("basic", basic_info)
         dynamic_info = game.get("dynamic_info", {})
+        # print("dynamic", dynamic_info)
         round_history = dynamic_info.get("round_history", [])
+        # print("round", round_history)
 
         # 初始化玩家和对手的信息
         player_info = None
@@ -398,11 +433,21 @@ def extract_player_info(data, player):
         win_flag = True
         totalbet = 0
         oppo = {}
+        hand_cards = []
 
         for round in round_history:
             # print(round)
-            invalid_num = len(round["table_cards"])
-            cards_num = invalid_num
+            cards_num = 5-round["table_cards"].count(-1)
+
+            if cards_num == 0:
+                if this_game_batches != []:
+                    for batch in reversed(this_game_batches):
+                        if "hand_cards" not in batch:
+                            this_game_batches.pop()
+                        else:
+                            break
+                    batches.append(this_game_batches)
+                    this_game_batches = []
             totalbet += round["bet"]
             # print(cards_num)
             # print(player_info, round["player"])
@@ -410,7 +455,7 @@ def extract_player_info(data, player):
 
             if round["player"] != player_info:
                
-                act = None
+                act = ""
                 if round["type"] == 2:
                     act = "bet"
                 if round["type"] == 5:
@@ -451,8 +496,8 @@ def extract_player_info(data, player):
                     batch["oppo_fold"] = oppo_repo["fold"]
 
                     this_game_batches.append(batch)
-                    if "hand_cards" not in batch.keys():
-                        print("no hand_cards")
+                    # if "hand_cards" not in batch.keys():
+                        # print("no hand_cards")
                     batch = {}
                     
                     if isdone:
@@ -464,7 +509,13 @@ def extract_player_info(data, player):
                         totalbet = 0
                     
             else:
-                print("="*10)
+                # print("="*10)
+                act = ""
+                if round["type"] == 2:
+                    act = "bet"
+                if round["type"] == 5:
+                    act = "fold"
+
                 batch["hand_chips"] = round["player_chips"]
                 if -1 in round["table_cards"]:
                     table_valid = round["table_cards"].remove(-1)
