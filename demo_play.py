@@ -123,6 +123,7 @@ class Socker:
 
             case SendEventEnum.UPDATE_ROOM:
                 self.player.set_joined_rooms(rid, AttrEnum.info, data)
+                all_info.load_room(rid)
                 self.write_log(
                     data, f"{SendEventEnum.UPDATE_ROOM} on_room_message")
 
@@ -151,7 +152,8 @@ class Socker:
                 # Total_info.keep(data["Result"]["Winner"])
                 all_info.set_room_winnner(rid, data["Result"]["Winner"])
                 all_info.room_manage[rid].state_encoder.info_storage.isdone()
-                print(f'{self.current_username} {rid} |Room| ', event, data)
+                # print(f'{self.current_username} {rid} |Room| ', event, data)
+                # print(NickAgent.memory.counter)
                 return
 
     # 响应处理服务器定向推给个人的
@@ -159,65 +161,67 @@ class Socker:
         #print(f'服务器推送{self.current_username} {rid}', event, data)
         match event:
             case SendEventEnum.PLAY_ACTION:
-                try:
+                # try:
                     #请修改此case下的逻辑
-                    time.sleep(0.5)
-                    # print(f'{self.current_username} {rid} PLAY_ACTION  ', event, data)
-                    table_info=self.player.get_joined_room_attr(rid, AttrEnum.table_info)#此方式调用最新收到的牌桌情况，需要历史信息时，可以改装对应函数，把他变为list之类的
-                    hand_cards=self.player.get_joined_room_attr(rid, AttrEnum.cards)
-                    # 这里是给到的一个demo ai示例 调用AI_bet.py中的ai函数即可
-                    # print(table_info, hand_cards)
-                    state_vector = all_info[rid].report_rl(table_info["GameStatus"]["LastAction"]["LastAction"], table_info["GameStatus"]["Round"], table_info["TableStatus"]["TableCard"])
-                    action_name, action_onehot = NickAgent.select_action(state_vector)
-                    if all_info.room_manage[rid].state_encoder.info_storage.state:
-                        all_info.room_manage[rid].state_encoder.info_storage.update_next_state(state_vector)
-                        reward = all_info.room_manage[rid].state_encoder.reward_wrapper.calculate_reward()
-                        all_info.room_manage[rid].state_encoder.info_storage.update_reward(reward)
-                    
-                    state, next_state, action, reward, dones = all_info[rid].state_encoder.info_storage.report()
+                time.sleep(0.5)
+                # print(f'{self.current_username} {rid} PLAY_ACTION  ', event, data)
+                table_info=self.player.get_joined_room_attr(rid, AttrEnum.table_info)#此方式调用最新收到的牌桌情况，需要历史信息时，可以改装对应函数，把他变为list之类的
+                hand_cards=self.player.get_joined_room_attr(rid, AttrEnum.cards)
+                # 这里是给到的一个demo ai示例 调用AI_bet.py中的ai函数即可
+                # print(table_info, hand_cards)
+                state_vector = all_info.room_manage[rid].report_rl(table_info["GameStatus"]["LastAction"]["LastAction"], table_info["GameStatus"]["Round"], table_info["TableStatus"]["TableCard"])
+                action_name, action_onehot = NickAgent.select_action(state_vector)
+                if all_info.room_manage[rid].state_encoder.info_storage.state is not None:
+                    all_info.room_manage[rid].state_encoder.info_storage.update_nextstate(state_vector)
+                    reward = all_info.room_manage[rid].state_encoder.reward_wrapper.calculate_reward()
+                    all_info.room_manage[rid].state_encoder.info_storage.update_reward(reward)
+                    # print("reward", reward)
+                    state, next_state, action, reward, dones = all_info.room_manage[rid].state_encoder.info_storage.report()
                     NickAgent.memorize(state, action, next_state, reward, dones)
                     all_info.room_manage[rid].state_encoder.info_storage.refresh()          
 
-                    all_info.room_manage[rid].state_encoder.reward_wrapper.refresh()
-                    all_info.room_manage[rid].state_encoder.info_storage.update_state(state_vector)
-                    all_info.room_manage[rid].state_encoder.info_storage.update_action(action_onehot)
+                all_info.room_manage[rid].state_encoder.reward_wrapper.refresh()
+                all_info.room_manage[rid].state_encoder.info_storage.update_state(state_vector)
+                all_info.room_manage[rid].state_encoder.info_storage.update_action(action_onehot)
                     
+                decision = rl_decide(action_name, table_info)
                     
-                    decision = rl_decide(action_name, table_info)
+                if NickAgent.memory.counter % 64 == 0 and NickAgent.memory.counter > 0:
+                    NickAgent.train()
                     
-                    # decision = ai(table_info, hand_cards['Cards'][0]['card'])
-                    for k, v in decision.items():
-                        BetAction = {'Bet': 0, 'SeatId': table_info['GameStatus']['NowAction']['SeatId'], 'Type': 5}
-                        match k:
-                            case "amount":
-                                BetAction['Bet'] = v
-                            case "callbet":
-                                BetAction['Bet']=data['BetLimit'][0]
-                                BetAction['Type'] = 2
-                            case "raisebet":
-                                BetAction['Type'] = 2
-                            case "allin":
-                                BetAction['Type'] = 3
-                            case "check":
-                                BetAction['Type'] = 2
-                            case "giveup":
-                                BetAction['Type'] = 2
+                    # # decision = ai(table_info, hand_cards['Cards'][0]['card'])
+                    # for k, v in decision.items():
+                    #     BetAction = {'Bet': 0, 'SeatId': table_info['GameStatus']['NowAction']['SeatId'], 'Type': 5}
+                    #     match k:
+                    #         case "amount":
+                    #             BetAction['Bet'] = v
+                    #         case "callbet":
+                    #             BetAction['Bet']=data['BetLimit'][0]
+                    #             BetAction['Type'] = 2
+                    #         case "raisebet":
+                    #             BetAction['Type'] = 2
+                    #         case "allin":
+                    #             BetAction['Type'] = 3
+                    #         case "check":
+                    #             BetAction['Type'] = 2
+                    #         case "giveup":
+                    #             BetAction['Type'] = 2
                         # print(BetAction)
                     #这里是随机bet一个数量的示例
                     # BetAction={}
-                    if data.get('BetLimit'):
-                        BetAction['Bet']= data['BetLimit'][0] if random.random()>0.1 else data['BetLimit'][1]
-                        BetAction['Type'] = 2
-                        BetAction['SeatId'] = data['SeatId']
-                        self.player.play_game(rid, BetAction)
+                    # if data.get('BetLimit'):
+                    #     BetAction['Bet']= data['BetLimit'][0] if random.random()>0.1 else data['BetLimit'][1]
+                    #     BetAction['Type'] = 2
+                    #     BetAction['SeatId'] = data['SeatId']
+                    #     self.player.play_game(rid, BetAction)
                     #jupyter下随机清除cell输出的log防止卡死
-                    if 'ipykernel' in sys.modules:
-                        if random.random()>0.99:
-                            clear_output()
-                    return
-                except Exception as e :
-                    # print(e)
-                    pass
+                    # if 'ipykernel' in sys.modules:
+                    #     if random.random()>0.99:
+                    #         clear_output()
+                return
+                # except Exception as e :
+                #     print(e)
+                #     pass
 
             case SendEventEnum.JOIN_ROOM_INFO:
                 # print(f'{self.current_username} {rid} JOIN_ROOM_INFO 已成功进入房间', event, data)
@@ -240,7 +244,9 @@ class Socker:
                 pass
 
             case SendEventEnum.UPDATE_ROOM:
+                # all_info.load_room(rid)
                 self.player.set_joined_rooms(rid, AttrEnum.info, data)
+                all_info.load_room(rid)
                 self.write_log(
                     data, f"{SendEventEnum.UPDATE_ROOM} on_user_message") #可以使用write_log或者print
 
@@ -255,6 +261,7 @@ class Socker:
 
             case SendEventEnum.UPDATE_USER_CARDS:
                 # print(data, "wyq2222 2222")
+                all_info.load_room(rid)
                 all_info.update_nick_cards(data["Rid"], data["Cards"][0]["seatId"], data["Cards"][0]["card"])
                 self.player.set_joined_rooms(
                     rid, AttrEnum.cards, data)

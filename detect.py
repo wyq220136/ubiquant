@@ -68,7 +68,7 @@ class round_info(action_info):
             "bet":self.bet,
             # "round_num":self.round_num,
             "table_cards":self.table_cards,
-            "stage":self.stage.report(self.round_num),
+            "stage":self.round_num,
             "player_chips":self.player_chips,
             "hand_cards":self.player_cards
         }
@@ -264,6 +264,7 @@ class total_info:
     def report_rl(self, action, round_num, table_cards):
         tmp_encode = round_info(action["Type"], action["Bet"], action["SeatId"], round_num, table_cards)
         tmp_encode.load_hand_chips(self.dynamic_info.nick_info[action["SeatId"]].hand_chips)
+        tmp_encode.load_player_cards(self.player_cards.get(action["SeatId"], []))
         round_res = tmp_encode.report()
         round_res["all_bet"] = self.bet_all
         # del tmp_encode

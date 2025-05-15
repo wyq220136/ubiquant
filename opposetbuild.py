@@ -22,6 +22,7 @@ class OpponentAnalysis:
     # 对手这一轮动作录入，0-过牌或弃牌，1-跟注，2-加注
     def calculate_new_agression(self, oppo_action):
         self.action_history[self.idx] = oppo_action
+        self.idx = (self.idx + 1) % self.window_size
         self.round_agression.append(oppo_action)
         # td更新
         self.agression = self.agression + self.gamma*(sum(self.action_history)/self.window_size - self.agression)
@@ -31,7 +32,7 @@ class OpponentAnalysis:
         
     # 计算对手当这一局的侵略性
     def calculate_agression_now(self):
-        return sum(self.round_agression)/len(self.round_agression)
+        return sum(self.round_agression)/(len(self.round_agression)+1e-8)
         
 # 只对外开放encode函数用于处理局内信息，其余用于维护
 class PokerStateEncoder:
@@ -50,10 +51,11 @@ class PokerStateEncoder:
                         'Q':10, 'K':11, 'A':12}
         self.suit_map = {'c':0, 'd':1, 'h':2, 's':3}
         self.stage_map = {
-            "PREFLOP": 0,
-            "FLOP": 1,
-            "TURN": 2,
-            "RIVER": 3,
+            0: 0,
+            1: 1,
+            2: 2,
+            3: 3,
+            101:4
         }
         
         self.nickDict = {}
@@ -96,13 +98,13 @@ class PokerStateEncoder:
         cards_modified = []
         # 只有手牌才能出现空列表情况
         if cards == []:
-            return [[0, 0]]*2
+            return [0, 0]*2
         for card in cards:
             if card != -1:
                 card_tmp = self._parse_card(card)
-                cards_modified.append(card_tmp)
+                cards_modified.extend(card_tmp)
             else:
-                cards_modified.append([0, 0])
+                cards_modified.extend([0, 0])
         return cards_modified
     
     
@@ -138,12 +140,13 @@ class PokerStateEncoder:
         features.extend(public_feature)
         
         # 筹码特征
-        player_chips = next(data["player_chips"], 0)
+        player_chips = data["player_chips"]
         
         # 全部对手筹码放入列表
         opponent_chips = []
-        opponent_chips.append(s.hand_chips for s in self.nickDict.values())
-        
+        for s in self.nickDict.values():
+            opponent_chips.append(s.hand_chips)
+        # print("opponent_chips", opponent_chips)
         # 计算底池
         pot = data["all_bet"]
         
@@ -167,8 +170,8 @@ class PokerStateEncoder:
         features.extend(position)
         
         # 阶段特征
-        stage_onehot = [0]*4
-        stage_onehot[self.stage_map[data["current_stage"]]] = 1
+        stage_onehot = [0]*5
+        stage_onehot[self.stage_map[data["stage"]]] = 1
         features.extend(stage_onehot)
         
         # 对手特征
@@ -176,11 +179,12 @@ class PokerStateEncoder:
         features.extend(aggress_all)
         features.extend(aggress_now)
 
+        # print("features", features)
         # 转换为numpy数组并确保维度
         state_vector = np.array(features, dtype=np.float32)
         
         # 最终维度验证
-        expected_dim = 2*2 + 5*2 + self.player_number + 1 + 3 + 4 + 2*(self.player_number-1)
+        expected_dim = 2*2 + 5*2 + self.player_number + 1 + 3 + 5 + 2*(self.player_number-1)
         assert len(state_vector) == expected_dim, \
             f"维度错误: 预期{expected_dim}, 实际{len(state_vector)}"
         
@@ -244,9 +248,10 @@ class ReplayMemory:
         self.state_memo[idx] = state
         self.nextstate_memo[idx] = next_state
         self.action_memo[idx] = action
+        print("reward", reward)
         self.reward_memo[idx] = reward
         self.done_memo[idx] = done
-        
+        print(11111111, self.counter)
         self.counter += 1
     
     def sample_memory(self, batch_size):
@@ -266,7 +271,7 @@ class ReplayMemory:
 
 
 class PokerSACAgent:
-    def __init__(self, memo_capacity, alpha, beta, gamma, tau, batch_size, device='cuda', state_dim=26):
+    def __init__(self, memo_capacity, alpha, beta, gamma, tau, batch_size, device='cuda', state_dim=27):
         self.action_dim = 5
         self.memory = ReplayMemory(memo_capacity, state_dim, self.action_dim)
         self.actor = ActorNetwork(state_dim, self.action_dim).to(device)
@@ -373,7 +378,7 @@ class PokerSACAgent:
         self.soft_update(self.critic2, self.target_critic2)
        
     def memorize(self, state, action, nextstate, reward, done):
-        self.memory.add_memory(state, action, nextstate, reward, done)
+        self.memory.add_memory(state, action, reward, nextstate, done)
     
 
 # 读取采取行动后奖励的方法，记录本回合决策到下回合决策之间发生的事情，合成动作的奖励
@@ -418,6 +423,7 @@ class rewardwrapper:
 class info_storage:
     def __init__(self):
         self.state = None
+        self.dones = 0
     
     def update_state(self, state):
         self.state = state
@@ -439,7 +445,3 @@ class info_storage:
       
     def refresh(self):
         self.dones = 0
-
-# class judge_winner:
-#     def __init__(self):
-#         self.is_win = False
