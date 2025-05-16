@@ -36,7 +36,7 @@ class OpponentAnalysis:
         
 # 只对外开放encode函数用于处理局内信息，其余用于维护
 class PokerStateEncoder:
-    def __init__(self, player_seat_id=3, number=2):
+    def __init__(self, player_seat_id=3, number=6):
         self.player_seat_id = player_seat_id
         self.max_chips = 2000  # 归一化参考值
         
@@ -78,8 +78,15 @@ class PokerStateEncoder:
             for id in data["seat_info"]:
                 if id["seatid"] != self.player_seat_id:
                     self.nickDict[id["seatid"]] = OpponentAnalysis(id)
+                    
+            # 为了防止一个房间坐不满情况，找出所有空座位并填充
+            match_seat = [0, 1, 2, 3, 4, 5].remove(self.player_seat_id)
+            for id in match_seat:
+                if id not in self.nickDict.keys():
+                    self.nickDict[id] = OpponentAnalysis(id)
+                    self.nickDict[id].hand_chips = 0
+            
             self.round_action = [0]*len(self.nickDict)
-            # print("11111", self.nickDict.keys())
             self.static_is_load = True
         
         
@@ -110,10 +117,8 @@ class PokerStateEncoder:
     
     def update_oppoaction(self, oppo_action, id):
         self.nickDict[id].calculate_new_agression(oppo_action)
-        # self.round_action[id] = oppo_action
         
     def update_chips(self, oppo_chips, id):
-        # print(self.nickDict.keys())
         self.nickDict[id].hand_chips = oppo_chips
         
         
@@ -271,7 +276,7 @@ class ReplayMemory:
 
 
 class PokerSACAgent:
-    def __init__(self, memo_capacity, alpha, beta, gamma, tau, batch_size, device='cuda', state_dim=27):
+    def __init__(self, memo_capacity, alpha, beta, gamma, tau, batch_size, device='cuda', state_dim=39):
         self.action_dim = 5
         self.memory = ReplayMemory(memo_capacity, state_dim, self.action_dim)
         self.actor = ActorNetwork(state_dim, self.action_dim).to(device)
@@ -408,16 +413,12 @@ class rewardwrapper:
     
     def calculate_reward(self):
         self.is_act = False
-        return 0.01*self.delta_bet+0.8*self.giveup_num + self.win_reward
+        return 0.01*self.delta_bet+0.8*self.giveup_num+5*self.win_reward
     
     
     # win_bet有正有负
-    def is_win(self, res, win_bet):
-        if res:
-            self.win_reward = win_bet
-        
-        else:
-            self.win_reward = win_bet
+    def is_win(self, win_bet):
+        self.win_reward = win_bet
     
     
 class info_storage:

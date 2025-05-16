@@ -142,9 +142,9 @@ class Socker:
                 all_info.load_room_static(rid, data["GameStatus"]["SBCur"], data["GameStatus"]["BBCur"], data["GameStatus"]["DealerCur"], data['GamePlayer']["NickName"], data["TableStatus"]["User"]["HandChips"])
                 # print(type(data["GameStatus"]["LastAction"]), type(data['GamePlayer']))
                 all_info.update_room(rid, data["GameStatus"]["LastAction"]["LastAction"], data["GameStatus"]["Round"], data["TableStatus"]["User"]["HandChips"], data["TableStatus"]["TableCard"], data["TableStatus"]["User"]["TotalBet"])
-                
+                all_info.room_manage[rid].state_encoder.reward_wrapper.get_reward(data["GameStatus"]["LastAction"]["LastAction"])
                 # self.player.set_joined_rooms(rid, AttrEnum.table_info, data)
-                # print(f'{self.current_username} {rid} |Room| ', event, data)
+                print(f'{self.current_username} {rid} |Room| ', event, data)
                 return
 
             case SendEventEnum.UPDATE_ACTION:
@@ -152,7 +152,9 @@ class Socker:
                 # Total_info.keep(data["Result"]["Winner"])
                 all_info.set_room_winnner(rid, data["Result"]["Winner"])
                 all_info.room_manage[rid].state_encoder.info_storage.isdone()
-                # print(f'{self.current_username} {rid} |Room| ', event, data)
+                tmp_reward = all_info.room_manage[rid].winbet
+                all_info.room_manage[rid].state_encoder.reward_wrapper.is_win(tmp_reward)
+                print(f'{self.current_username} {rid} |Room| ', event, data)
                 # print(NickAgent.memory.counter)
                 return
 
@@ -189,31 +191,31 @@ class Socker:
                 if NickAgent.memory.counter % 64 == 0 and NickAgent.memory.counter > 0:
                     NickAgent.train()
                     
-                    # # decision = ai(table_info, hand_cards['Cards'][0]['card'])
-                    # for k, v in decision.items():
-                    #     BetAction = {'Bet': 0, 'SeatId': table_info['GameStatus']['NowAction']['SeatId'], 'Type': 5}
-                    #     match k:
-                    #         case "amount":
-                    #             BetAction['Bet'] = v
-                    #         case "callbet":
-                    #             BetAction['Bet']=data['BetLimit'][0]
-                    #             BetAction['Type'] = 2
-                    #         case "raisebet":
-                    #             BetAction['Type'] = 2
-                    #         case "allin":
-                    #             BetAction['Type'] = 3
-                    #         case "check":
-                    #             BetAction['Type'] = 2
-                    #         case "giveup":
-                    #             BetAction['Type'] = 2
+                # decision = ai(table_info, hand_cards['Cards'][0]['card'])
+                for k, v in decision.items():
+                    BetAction = {'Bet': 0, 'SeatId': table_info['GameStatus']['NowAction']['SeatId'], 'Type': 5}
+                    match k:
+                        case "amount":
+                            BetAction['Bet'] = v
+                        case "callbet":
+                            BetAction['Bet']=data['BetLimit'][0]
+                            BetAction['Type'] = 2
+                        case "raisebet":
+                            BetAction['Type'] = 2
+                        case "allin":
+                            BetAction['Type'] = 3
+                        case "check":
+                            BetAction['Type'] = 2
+                        case "giveup":
+                            BetAction['Type'] = 2
                         # print(BetAction)
                     #这里是随机bet一个数量的示例
                     # BetAction={}
-                    # if data.get('BetLimit'):
-                    #     BetAction['Bet']= data['BetLimit'][0] if random.random()>0.1 else data['BetLimit'][1]
-                    #     BetAction['Type'] = 2
-                    #     BetAction['SeatId'] = data['SeatId']
-                    #     self.player.play_game(rid, BetAction)
+                if data.get('BetLimit'):
+                    BetAction['Bet']= data['BetLimit'][0] if random.random()>0.1 else data['BetLimit'][1]
+                    BetAction['Type'] = 2
+                    BetAction['SeatId'] = data['SeatId']
+                    self.player.play_game(rid, BetAction)
                     #jupyter下随机清除cell输出的log防止卡死
                     # if 'ipykernel' in sys.modules:
                     #     if random.random()>0.99:

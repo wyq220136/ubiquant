@@ -187,6 +187,9 @@ class total_info:
         
         self.hero_name = "p_13304936695"
         # self.lock = threading.Lock()
+        # 计算玩家一局内的收获和损失
+        self.hero_chips = 2000
+        self.winbet = 0
         
         self.bet_all = 0
         
@@ -202,6 +205,7 @@ class total_info:
         for i in self.basic_info.seat_info.values():
             if i.usrname == self.hero_name:
                 self.state_encoder.player_seat_id = i.seatid
+                self.hero_chips = self.basic_info.seat_info[i.seatid].hand_chips
         data = self.basic_info.report()
         self.state_encoder.load_all_nick(data)
         
@@ -246,6 +250,8 @@ class total_info:
     
     def set_winner(self, winner:dict):
         self.winner = list(winner.keys())[0]
+        self.winbet = self.basic_info.seat_info[self.state_encoder.player_seat_id].hand_chips - self.hero_chips
+        self.hero_chips = self.basic_info.seat_info[self.state_encoder.player_seat_id].hand_chips
        
         
     def read_cards(self):
