@@ -456,7 +456,3 @@ class info_storage:
       
     def refresh(self):
         self.dones = 0
-
-# class judge_winner:
-#     def __init__(self):
-#         self.is_win = False

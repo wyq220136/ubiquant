@@ -31,8 +31,8 @@ class Node:
     }
     """
     def load_info(self, batch:dict):
-        print(batch.keys())
-        print(batch["stage"])
+        # print(batch.keys())
+        # print(batch["stage"])
         self.stage = batch["stage"]
         self.private_cards = batch["hand_cards"]
         self.public_cards = batch["public_cards"]
@@ -507,10 +507,11 @@ def extract_player_info(data, player):
                     batch["oppo_totalbet"] = oppo_repo["total_bet"]
                     batch["aggression"] = oppo_repo["aggression"]
                     # batch["oppo_fold"] = oppo_repo["fold"]
-                    if -1 in round["table_cards"]:
-                        table_valid = round["table_cards"].remove(-1)
-                    else:
-                        table_valid = round["table_cards"]
+                    # print("round_raw", round["table_cards"])
+                    while -1 in round["table_cards"]:
+                        round["table_cards"].remove(-1)
+                    table_valid = round["table_cards"]
+                    # print("table_process", table_valid)
                     batch["public_cards"] = table_valid
                     this_game_batches.append(batch)
                     # if "hand_cards" not in batch.keys():
@@ -525,10 +526,12 @@ def extract_player_info(data, player):
                     
             else:
                 batch["hand_chips"] = round["player_chips"]
-                if -1 in round["table_cards"]:
-                    table_valid = round["table_cards"].remove(-1)
-                else:
-                    table_valid = round["table_cards"]
+                # print("round_raw", round["table_cards"])
+                while -1 in round["table_cards"]:
+                    round["table_cards"].remove(-1)
+                table_valid = round["table_cards"]
+
+                # print("table_process", table_valid)
                 # print(table_valid)
                 batch["public_cards"] = table_valid
                 act = ""
@@ -580,9 +583,9 @@ def main():
             for file in os.listdir(subdir_path):
                 if file.endswith(".json"):
                     log_file = os.path.join(subdir_path, file)
-                    print(log_file)
+                    # print(log_file)
                     data.extend(load_json_file(log_file))
-                    print(len(data))
+                    # print(len(data))
 
     for subdir in os.listdir(log_folder):
         subdir_path = os.path.join(log_folder, subdir)
@@ -591,23 +594,23 @@ def main():
             for file in os.listdir(subdir_path):
                 if file.endswith(".json"):
                     log_file = os.path.join(subdir_path, file)
-                    print(log_file)
+                    # print(log_file)
                     
                     try:
                         # 尝试解析JSON文件
                         with open(log_file, 'r') as f:
                             json.load(f)  # 仅检查格式，不保存数据
                     except json.JSONDecodeError as e:
-                        print(f"JSON格式错误在文件 {log_file}: {e}")
+                        # print(f"JSON格式错误在文件 {log_file}: {e}")
                         continue  # 跳过后续处理
                     except Exception as e:
-                        print(f"读取文件时发生错误 {log_file}: {e}")
+                        # print(f"读取文件时发生错误 {log_file}: {e}")
                         continue
                     data.extend(load_json_file(log_file))
 
     player = "p_13304936695"
     batches = extract_player_info(data, player)
-    print("batches", len(batches))
+    # print("batches", len(batches))
     scorer = LabelScorer()
     for i in batches:
         game1 = node_list()
