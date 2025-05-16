@@ -33,6 +33,13 @@ class OpponentAnalysis:
     # 计算对手当这一局的侵略性
     def calculate_agression_now(self):
         return sum(self.round_agression)/len(self.round_agression)
+    
+    def report(self):
+        report = {}
+        report['total_bet'] = sum(self.action_history)
+        report['aggression'] = self.agression
+        # report['fold'] = self.fold
+        return report
         
 # 只对外开放encode函数用于处理局内信息，其余用于维护
 class PokerStateEncoder:

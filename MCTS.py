@@ -43,7 +43,7 @@ class Node:
         self.location = batch["location"]
         self.oppo_totalbet = batch["oppo_totalbet"]
         self.aggression = batch["aggression"]
-        self.oppo_fold = batch["oppo_fold"]
+        # self.oppo_fold = batch["oppo_fold"]
     
     def calculate_value(self, baseline:float, c_puct:float):
         # 仅适用于叶子节点，baseline是基础奖罚值，c_puct是根据手牌获得的倍率
@@ -134,7 +134,7 @@ class node_list:
             result["location"].append(current_node.location)
             result["oppo_totalbet"].append(current_node.oppo_totalbet)
             result["aggression"].append(current_node.aggression)
-            result["oppo_fold"].append(current_node.oppo_fold)
+            # result["oppo_fold"].append(current_node.oppo_fold)
 
             current_node = current_node.children
         return result
@@ -439,7 +439,7 @@ def extract_player_info(data, player):
         win_flag = True
         totalbet = 0
         oppo = {}
-        hand_cards = []
+        # hand_cards = []
 
         for round in round_history:
             # print(round)
@@ -471,7 +471,7 @@ def extract_player_info(data, player):
                     new_oppo = OpponentAnalysis(round["player"])
                     oppo[round["player"]] = new_oppo
 
-                oppo[round["player"]].calculate_new_aggression(round["type"])
+                oppo[round["player"]].calculate_new_agression(round["type"])
 
                 p_flag, isdone = processor.get_extern_info(cards_num, act, round["bet"])
                 # print(p_flag, isdone)
@@ -499,7 +499,7 @@ def extract_player_info(data, player):
                     oppo_repo = oppo[round["player"]].report()
                     batch["oppo_totalbet"] = oppo_repo["total_bet"]
                     batch["aggression"] = oppo_repo["aggression"]
-                    batch["oppo_fold"] = oppo_repo["fold"]
+                    # batch["oppo_fold"] = oppo_repo["fold"]
 
                     this_game_batches.append(batch)
                     # if "hand_cards" not in batch.keys():
