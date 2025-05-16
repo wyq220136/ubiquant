@@ -31,6 +31,8 @@ class Node:
     }
     """
     def load_info(self, batch:dict):
+        print(batch.keys())
+        print(batch["stage"])
         self.stage = batch["stage"]
         self.private_cards = batch["hand_cards"]
         self.public_cards = batch["public_cards"]
@@ -114,8 +116,8 @@ class node_list:
             "player":  [],
             "location": [],
             "oppo_totalbet": [],
-            "aggression": [],
-            "oppo_fold": []
+            "aggression": []
+            # "oppo_fold": []
         }
         
         current_node = self.root.children
@@ -157,7 +159,7 @@ class LabelScorer:
             "location": [],
             "oppo_totalbet": [],
             "aggression": [],
-            "oppo_fold": []
+            # "oppo_fold": []
         }
         
         self.path = "data.csv"
@@ -200,8 +202,8 @@ class LabelScorer:
                 f"Player: {self.result['player'][i]}, "
                 f"Location: {self.result['location'][i]}, "
                 f"Oppo_totalbet: {self.result['oppo_totalbet'][i]}, "
-                f"Aggression: {self.result['aggression'][i]}, "
-                f"oppo_fold: {self.result['oppo_fold'][i]}"
+                f"Aggression: {self.result['aggression'][i]}"
+                # f"oppo_fold: {self.result['oppo_fold'][i]}"
 
             )
             # print(type(desc))
@@ -240,8 +242,8 @@ class LabelScorer:
                 f"Player: {self.result['player'][i]}, "
                 f"Location: {self.result['location'][i]}, "
                 f"Oppo_totalbet: {self.result['oppo_totalbet'][i]}, "
-                f"Aggression: {self.result['aggression'][i]}, "
-                f"oppo_fold: {self.result['oppo_fold'][i]}"
+                f"Aggression: {self.result['aggression'][i]}"
+                # f"oppo_fold: {self.result['oppo_fold'][i]}"
 
             )
             # print(type(desc))
@@ -452,12 +454,17 @@ def extract_player_info(data, player):
                             this_game_batches.pop()
                         else:
                             break
+                    cnt = 1
+                    for batch in reversed(this_game_batches):
+                        if "hand_cards" not in batch:
+                            batch["action"] = "check"
+                            batch["hand_cards"] = this_game_batches[-cnt-1]["hand_cards"]
+                            batch["hand_chips"] = this_game_batches[-cnt-1]["hand_chips"]
+                        cnt += 1
+                            
                     batches.append(this_game_batches)
                     this_game_batches = []
             totalbet += round["bet"]
-            # print(cards_num)
-            # print(player_info, round["player"])
-            # print("="*20)
 
             if round["player"] != player_info:
                
@@ -500,7 +507,11 @@ def extract_player_info(data, player):
                     batch["oppo_totalbet"] = oppo_repo["total_bet"]
                     batch["aggression"] = oppo_repo["aggression"]
                     # batch["oppo_fold"] = oppo_repo["fold"]
-
+                    if -1 in round["table_cards"]:
+                        table_valid = round["table_cards"].remove(-1)
+                    else:
+                        table_valid = round["table_cards"]
+                    batch["public_cards"] = table_valid
                     this_game_batches.append(batch)
                     # if "hand_cards" not in batch.keys():
                         # print("no hand_cards")
@@ -513,13 +524,6 @@ def extract_player_info(data, player):
                         totalbet = 0
                     
             else:
-                # print("="*10)
-                act = ""
-                if round["type"] == 2:
-                    act = "bet"
-                if round["type"] == 5:
-                    act = "fold"
-
                 batch["hand_chips"] = round["player_chips"]
                 if -1 in round["table_cards"]:
                     table_valid = round["table_cards"].remove(-1)
